@@ -1,0 +1,22 @@
+storeDeviceCertificates:
+  handler: store_device_certificates/handler.store_device_certificates
+  events:
+    - sns: 
+        arn: !Ref deviceCertificatesCreatedTopic
+        topicName: iot_device_certificates_created
+  iamRoleStatements:
+    - Effect: Allow
+      Action: s3:PutObject
+      Resource: 
+        Fn::Join:
+          - "/"
+          -
+            - Fn::GetAtt:
+              - iotCertificatesStorage
+              - Arn
+            - "*"
+  environment:
+    IOT_DEVICES_CERTS_BUCKET: !Ref iotCertificatesStorage
+  package:
+    include:
+      - store_device_certificates/*.py  

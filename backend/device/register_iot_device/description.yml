@@ -1,0 +1,14 @@
+registerIotDevice:
+  handler: register_iot_device/handler.register_iot_device
+  iamRoleStatements:
+    - Effect: Allow
+      Action: iot:CreateThing
+      Resource: "*"
+    - Effect: Allow
+      Action: sns:Publish
+      Resource: !Ref deviceRegisteredTopic
+  environment:
+    IOT_DEVICE_REGISTERED_TOPIC: !Ref deviceRegisteredTopic
+  package:
+    include:
+      - register_iot_device/*.py  

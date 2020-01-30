@@ -1,0 +1,10 @@
+Resources:
+  deviceRegisteredTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: iot_device_registered
+    
+  deviceCertificatesCreatedTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: iot_device_certificates_created

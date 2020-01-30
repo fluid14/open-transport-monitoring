@@ -1,0 +1,28 @@
+service: deviceapp: transportation-iotorg: opentransportmonitoring
+
+provider:
+  name: aws
+  runtime: python3.7
+  stage: dev
+  region: eu-west-2
+
+plugins:
+  - serverless-iam-roles-per-function
+
+package:
+  individually: true
+  exclude:
+    - "**/*"
+ 
+functions:
+  - ${file(create_device_certificates/description.yml)}
+  - ${file(register_iot_device/description.yml)}
+  - ${file(store_device_certificates/description.yml)}
+  - ${file(get_device_certificates/description.yml)}
+  - ${file(get_registered_devices/description.yml)}
+  - ${file(handle_device_message/description.yml)}
+
+resources:
+  - ${file(resources/iot_device_policy.yml)}
+  - ${file(resources/iot_certificates_storage.yml)}
+  - ${file(resources/device_operation_topics.yml)}

@@ -1,0 +1,22 @@
+createDeviceCertificates:
+  handler: create_device_certificates/handler.create_device_certificates
+  events:
+    - sns: 
+        arn: !Ref deviceRegisteredTopic
+        topicName: iot_device_registered
+  iamRoleStatements:
+    - Effect: Allow
+      Action: 
+        - iot:CreateKeysAndCertificate
+        - iot:AttachPolicy
+        - iot:AttachThingPrincipal
+      Resource: "*"
+    - Effect: Allow
+      Action: sns:Publish
+      Resource: !Ref deviceCertificatesCreatedTopic
+  environment:
+    IOT_POLICY: !Ref iotDevicePolicy
+    IOT_DEVICE_CERTIFICATES_CREATED_TOPIC: !Ref deviceCertificatesCreatedTopic
+  package:
+    include:
+      - create_device_certificates/*.py

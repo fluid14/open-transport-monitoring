@@ -1,0 +1,9 @@
+getRegisteredDevices:
+  handler: get_registered_devices/handler.get_registered_devices
+  iamRoleStatements:
+    - Effect: Allow
+      Action: iot:ListThings
+      Resource: "*"
+  package:
+    include:
+      - get_registered_devices/*.py  

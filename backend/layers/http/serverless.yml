@@ -1,0 +1,30 @@
+service: http-layer
+app: transportation-iot
+org: opentransportmonitoring
+
+package:
+  excludeDevDependencies: false
+
+provider:
+  name: aws
+  runtime: python3.7
+  stage: dev
+  region: eu-west-2
+
+plugins:
+ - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    layer: 
+      name: http
+      description: HTTP helpers layer
+    dockerizePip: false
+    
+resources:
+  Outputs:
+    httpLayerExport:
+        Value:
+          Ref: PythonRequirementsLambdaLayer
+        Export:
+          Name: HttpLambdaLayer

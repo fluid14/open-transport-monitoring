@@ -1,0 +1,14 @@
+getDeviceCertificates:
+  handler: get_device_certificates/handler.get_device_certificates
+  iamRoleStatements:
+    - Effect: Allow
+      Action: s3:GetObject
+      Resource: 
+         Fn::GetAtt:
+          - iotCertificatesStorage
+          - Arn
+  environment:
+    IOT_DEVICES_CERTS_BUCKET: !Ref iotCertificatesStorage
+  package:
+    include:
+      - get_device_certificates/*.py  
