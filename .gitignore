@@ -20,6 +20,11 @@ var/
 .serverless
 node_modules
 __pycache__
+env.yml
 
 # IDE
 .idea
+
+# Python virtual env
+venv
+

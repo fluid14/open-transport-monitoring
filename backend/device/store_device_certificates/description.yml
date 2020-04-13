@@ -1,5 +1,10 @@
 storeDeviceCertificates:
-  handler: store_device_certificates/handler.store_device_certificates
+  handler: store_device_certificates/src/handler.store_device_certificates
+  layers:
+    - Fn::ImportValue:
+        QueueLambdaLayer
+    - Fn::ImportValue:
+        BucketLambdaLayer
   events:
     - sns: 
         arn: !Ref deviceCertificatesCreatedTopic
@@ -19,4 +24,4 @@ storeDeviceCertificates:
     IOT_DEVICES_CERTS_BUCKET: !Ref iotCertificatesStorage
   package:
     include:
-      - store_device_certificates/*.py  
+      - store_device_certificates/src/*.py

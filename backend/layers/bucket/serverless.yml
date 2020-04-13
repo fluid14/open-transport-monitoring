@@ -1,0 +1,32 @@
+service: bucket-layer
+app: transportation-iot
+org: opentransportmonitoring
+
+provider:
+  name: aws
+  stage: dev
+  region: eu-west-2
+
+plugins:
+  - serverless-scriptable-plugin
+
+custom:
+  runtime: python3.7
+  artifact: .serverless/bucket.zip
+  scriptHooks:
+    after:package:createDeploymentArtifacts: python ../../scripts/prepare_custom_layer.py . ${self:custom.artifact} ${self:custom.runtime}
+
+layers:
+  bucket:
+    package:
+      artifact: ${self:custom.artifact}
+    compatibleRuntimes:
+      - ${self:custom.runtime}
+
+resources:
+  Outputs:
+    bucketLayerExport:
+      Value:
+        Ref: BucketLambdaLayer
+      Export:
+        Name: BucketLambdaLayer

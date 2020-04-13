@@ -1,5 +1,10 @@
 getDeviceCertificates:
-  handler: get_device_certificates/handler.get_device_certificates
+  handler: get_device_certificates/src/handler.get_device_certificates
+  layers:
+    - Fn::ImportValue:
+        DeviceLambdaLayer
+    - Fn::ImportValue:
+        BucketLambdaLayer
   iamRoleStatements:
     - Effect: Allow
       Action: s3:GetObject
@@ -7,8 +12,11 @@ getDeviceCertificates:
          Fn::GetAtt:
           - iotCertificatesStorage
           - Arn
+    - Effect: Allow
+      Action: iot:DescribeThing
+      Resource: "*"
   environment:
     IOT_DEVICES_CERTS_BUCKET: !Ref iotCertificatesStorage
   package:
     include:
-      - get_device_certificates/*.py  
+      - get_device_certificates/src/*.py

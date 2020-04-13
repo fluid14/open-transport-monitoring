@@ -1,0 +1,1 @@
+class StorageFailed(Exception): pass

@@ -1,5 +1,8 @@
 createDeviceCertificates:
-  handler: create_device_certificates/handler.create_device_certificates
+  handler: create_device_certificates/src/handler.create_device_certificates
+  layers:
+    - Fn::ImportValue:
+        QueueLambdaLayer
   events:
     - sns: 
         arn: !Ref deviceRegisteredTopic
@@ -19,4 +22,4 @@ createDeviceCertificates:
     IOT_DEVICE_CERTIFICATES_CREATED_TOPIC: !Ref deviceCertificatesCreatedTopic
   package:
     include:
-      - create_device_certificates/*.py
+      - create_device_certificates/src/*

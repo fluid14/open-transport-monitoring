@@ -1,0 +1,32 @@
+service: queue-layer
+app: transportation-iot
+org: opentransportmonitoring
+
+provider:
+  name: aws
+  stage: dev
+  region: eu-west-2
+
+plugins:
+  - serverless-scriptable-plugin
+
+custom:
+  runtime: python3.7
+  artifact: .serverless/queue.zip
+  scriptHooks:
+    after:package:createDeploymentArtifacts: python ../../scripts/prepare_custom_layer.py . ${self:custom.artifact} ${self:custom.runtime}
+
+layers:
+  queue:
+    package:
+      artifact: ${self:custom.artifact}
+    compatibleRuntimes:
+      - ${self:custom.runtime}
+
+resources:
+  Outputs:
+    queueLayerExport:
+        Value:
+          Ref: QueueLambdaLayer
+        Export:
+          Name: QueueLambdaLayer

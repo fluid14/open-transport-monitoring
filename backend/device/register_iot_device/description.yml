@@ -1,5 +1,10 @@
 registerIotDevice:
-  handler: register_iot_device/handler.register_iot_device
+  handler: register_iot_device/src/handler.register_iot_device
+  layers:
+    - Fn::ImportValue:
+        QueueLambdaLayer
+    - Fn::ImportValue:
+        DeviceLambdaLayer
   iamRoleStatements:
     - Effect: Allow
       Action: iot:CreateThing
@@ -11,4 +16,4 @@ registerIotDevice:
     IOT_DEVICE_REGISTERED_TOPIC: !Ref deviceRegisteredTopic
   package:
     include:
-      - register_iot_device/*.py  
+      - register_iot_device/src/*.py

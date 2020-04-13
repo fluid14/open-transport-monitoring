@@ -1,9 +1,12 @@
 getRegisteredDevices:
-  handler: get_registered_devices/handler.get_registered_devices
+  handler: get_registered_devices/src/handler.get_registered_devices
+  layers:
+    - Fn::ImportValue:
+        DeviceLambdaLayer
   iamRoleStatements:
     - Effect: Allow
       Action: iot:ListThings
       Resource: "*"
   package:
     include:
-      - get_registered_devices/*.py  
+      - get_registered_devices/src/*.py
