@@ -28,7 +28,7 @@ $ py invoke_lambda.py -f nazwaFunkcji -s nazwaSerwisu
 gdzie `nazwaFunkcji` to nazwa funkcji określona w pliku `serverless.yml`
 Skrypt `invoke_lambda.py` znajduje się w katalogu `scripts`
 
-##### Lambda wymagająca inputu 
+##### Lambda wymagająca inputu
 Jeśli lambda oczekuje inputu należy umieścić przykładową strukturę w pliku `input.json` w folderze z lambdą.
 
 ##### Lambda wymagająca zmiennych środowiskowych

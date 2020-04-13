@@ -4,12 +4,12 @@ createDeviceCertificates:
     - Fn::ImportValue:
         QueueLambdaLayer
   events:
-    - sns: 
+    - sns:
         arn: !Ref deviceRegisteredTopic
         topicName: iot_device_registered
   iamRoleStatements:
     - Effect: Allow
-      Action: 
+      Action:
         - iot:CreateKeysAndCertificate
         - iot:AttachPolicy
         - iot:AttachThingPrincipal
