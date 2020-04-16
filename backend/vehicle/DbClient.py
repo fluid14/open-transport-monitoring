@@ -8,13 +8,13 @@ logger.setLevel(logging.INFO)
 
 class DbClient:
 
-    def __init__(self):
+    def __init__(self, db_name, username, password, hostname, port):
         self.connection = None
-        self.db_name = os.environ['DB_NAME']
-        self.username = os.environ['USERNAME']
-        self.password = os.environ['PASSWORD']
-        self.hostname = os.environ['HOSTNAME']
-        self.port = os.environ['PORT']
+        self.db_name = db_name
+        self.username = username
+        self.password = password
+        self.hostname = hostname
+        self.port = port
 
     def connect(self):
         try:

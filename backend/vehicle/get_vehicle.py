@@ -1,10 +1,15 @@
 from DbClient import DbClient
 import logging
+import os
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-db_client = DbClient()
+db_client = DbClient(os.environ['DB_NAME'],
+                     os.environ['USERNAME'],
+                     os.environ['PASSWORD'],
+                     os.environ['HOSTNAME'],
+                     os.environ['PORT'])
 connection = db_client.connect()
 
 
