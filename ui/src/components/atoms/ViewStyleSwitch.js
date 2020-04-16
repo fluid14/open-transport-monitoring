@@ -6,12 +6,13 @@ import { Consumer } from 'context/GridViewType';
 
 const SwitchWrap = styled.a`
   display: flex;
-  width: 25px;
-  height: 25px;
+  width: 3rem;
+  height: 3rem;
   border: none;
   background: url(${({ gridView }) => (gridView ? listIco : gridIco)}) center center / cover
     no-repeat;
   transition: 0.3s ease;
+  cursor: pointer;
 `;
 
 const ViewStyleSwitch = () => (

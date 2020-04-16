@@ -16,7 +16,7 @@ class App extends React.Component {
       <BrowserRouter>
         <GlobalTemplate user={user}>
           <Switch>
-            <Route exact path={routes.home} render={() => <Redirect to="/allVehicles" />} />
+            <Route exact path={routes.home} render={() => <Redirect to={routes.allVehicles} />} />
             <Route exact path={routes.allVehicles} component={AllVehiclesView} />
             <Route exact path={routes.vehicle} component={VehicleView} />
           </Switch>

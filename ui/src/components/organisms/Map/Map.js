@@ -4,8 +4,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import mapPlug from 'assets/img/map.png';
-import { resizeMap } from './resizeMap';
-import { mapInit } from './mapInit';
+import mapInit from './mapInit';
 import getUserPosition from './getUserPosition';
 
 const MapWrap = styled.div`
@@ -30,7 +29,7 @@ const ResizeBar = styled.div`
   z-index: 99;
   transition: 0.3s ease;
   &:hover {
-    background-color: red;
+    opacity: 0.3;
   }
 `;
 
@@ -48,14 +47,7 @@ class Map extends React.Component {
     },
   };
 
-  resizeBar = React.createRef();
-
-  mapWrap = React.createRef();
-
   componentDidMount() {
-    const resizeBar = this.resizeBar.current;
-    const mapWrap = this.mapWrap.current;
-
     getUserPosition()
       .then(position => {
         this.setState({
@@ -67,19 +59,32 @@ class Map extends React.Component {
       })
       .then(() => {
         const { userPosition } = this.state;
-        console.log(userPosition);
+        mapInit(userPosition);
+        // console.log(mapBox)
       })
       .catch(err => console.log(err));
+  }
 
-    // mapInit();
-    resizeMap(mapWrap, resizeBar);
+  resizeBar = React.createRef();
+  mapWrap = React.createRef();
+
+  moveMap = (e) => {
+    this.mapWrap.current.style.height = `${window.innerHeight - e.clientY - 5}px`;
+  };
+
+  resize = () => {
+    document.addEventListener('mousemove', this.moveMap)
+  };
+
+  stopResize = () => {
+    document.removeEventListener('mousemove', this.moveMap);
   }
 
   render() {
     return (
       <>
         <MapWrap ref={this.mapWrap}>
-          <ResizeBar ref={this.resizeBar} />
+          <ResizeBar ref={this.resizeBar} onMouseDown={this.resize} onMouseUp={this.stopResize} />
           <MapBox id="map" />
         </MapWrap>
       </>

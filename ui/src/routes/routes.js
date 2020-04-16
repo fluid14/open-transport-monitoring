@@ -1,5 +1,5 @@
 export const routes = {
   home: '/',
   allVehicles: '/allVehicles',
-  vehicle: '/vehicle',
+  vehicle: '/vehicle/:id',
 };

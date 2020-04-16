@@ -49,13 +49,21 @@ const InputField = styled.input`
   font-size: 1.4rem;
   background-color: transparent;
   width: 100%;
+  color: ${({theme}) => theme.colors.gray};
+  
+  ::placeholder{
+    font-size: 0;
+    color: transparent;
+  }
 
+  :not(:placeholder-shown) + ${InputNameHelper}::before,
   :focus + ${InputNameHelper}::before {
     transform: translateY(-105%);
     font-size: 1.2rem;
-    color: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.gray};
   }
 
+  :not(:placeholder-shown) + ${InputNameHelper}::after,
   :focus + ${InputNameHelper}::after {
     width: 100%;
   }
@@ -63,8 +71,8 @@ const InputField = styled.input`
 
 const Input = ({ placeholder, type }) => (
   <InputWrap>
-    <InputField type={type} />
-    <InputNameHelper placeholder={placeholder} />
+    <InputField type={type} placeholder={placeholder}/>
+    <InputNameHelper placeholder={placeholder}/>
   </InputWrap>
 );
 

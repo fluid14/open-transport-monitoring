@@ -9,8 +9,9 @@ const TopBarWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: ${({ theme }) => theme.padding.wrap};
+  padding: 2rem 2rem 2rem 3.7rem;
   color: ${({ theme }) => theme.colors.white};
+  z-index: 1;
 `;
 
 const TopBar = ({ userName }) => (

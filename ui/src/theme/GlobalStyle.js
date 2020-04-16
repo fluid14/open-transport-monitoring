@@ -16,12 +16,26 @@ const GlobalStyle = createGlobalStyle`
   
   html {
     font-size: 62.5%; 
+    @media screen and (min-width: 1366px){
+      font-size: 66%;
+    }
+    @media screen and (min-width: 1440px){
+      font-size: 71%;
+    }
+    @media screen and (min-width: 1680px){
+      font-size: 80%;
+    }
+    @media screen and (min-width: 1920px){
+      font-size: 93%;
+    }
   }
   
   body {
     font-size: 1.6rem;
     background-color: ${({ theme }) => theme.colors.purple};
     font-family: 'Nunito', sans-serif;
+    min-width: 1200px;
+    overflow-x: hidden;
   }
 
   a {

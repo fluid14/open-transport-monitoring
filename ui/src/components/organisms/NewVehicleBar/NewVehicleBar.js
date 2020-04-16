@@ -10,7 +10,7 @@ const VehicleBarWrap = styled.div`
   top: 0;
   right: 0;
   transform: ${({ isVisible }) => (isVisible === true ? 'translateX(0)' : 'translateX(200%)')};
-  width: 40rem;
+  width: 35rem;
   height: 100vh;
   background-color: #fff;
   z-index: 999;

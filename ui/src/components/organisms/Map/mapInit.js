@@ -1,55 +1,57 @@
-// import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
-// import route1 from 'data/route_1.json';
-// // Symulacja pobrania danych
-// // import allVehiclesData from 'data/allVehicles.json';
+import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
+import route1 from 'data/route_1.json';
+// Symulacja pobrania danych
+// import allVehiclesData from 'data/allVehicles.json';
 
-// // const showAllVehicles = (mapBox, allVehicles) => {
-// //   const vehicleCount = Object.keys(allVehicles).length;
-// //   let geoJsonData;
-// //   let counter = 0;
-// //   geoJsonData = {
-// //     geometry: {
-// //       type: 'Point',
-// //       coordinates: [route1[counter].lng, route1[counter].lat],
-// //     },
-// //     type: 'Feature',
-// //     properties: {},
-// //   };
+const showAllVehicles = (mapBox, allVehicles) => {
+  const vehicleCount = Object.keys(allVehicles).length;
+  let geoJsonData;
+  let counter = 0;
+  geoJsonData = {
+    geometry: {
+      type: 'Point',
+      coordinates: [route1[counter].lng, route1[counter].lat],
+    },
+    type: 'Feature',
+    properties: {},
+  };
 
-// //   mapBox.on('load', () => {
-// //     window.setInterval(() => {
-// //       geoJsonData = {
-// //         geometry: {
-// //           type: 'Point',
-// //           coordinates: [route1[counter].lng, route1[counter].lat],
-// //         },
-// //         type: 'Feature',
-// //         properties: {},
-// //       };
-// //       mapBox.getSource('vehicle1').setData(geoJsonData);
-// //       counter += 1;
-// //     }, 1000);
+  mapBox.on('load', () => {
+    window.setInterval(() => {
+      geoJsonData = {
+        geometry: {
+          type: 'Point',
+          coordinates: [route1[counter].lng, route1[counter].lat],
+        },
+        type: 'Feature',
+        properties: {},
+      };
+      mapBox.getSource('vehicle1').setData(geoJsonData);
+      counter += 1;
+    }, 1000);
 
-// //     mapBox.addSource('vehicle1', { type: 'geojson', data: geoJsonData });
-// //     mapBox.addLayer({
-// //       id: 'vehicle1',
-// //       type: 'symbol',
-// //       source: 'vehicle1',
-// //       layout: {
-// //         'icon-image': 'rocket-15',
-// //       },
-// //     });
-// //   });
-// // };
+    mapBox.addSource('vehicle1', { type: 'geojson', data: geoJsonData });
+    mapBox.addLayer({
+      id: 'vehicle1',
+      type: 'symbol',
+      source: 'vehicle1',
+      layout: {
+        'icon-image': 'rocket-15',
+      },
+    });
+  });
+};
 
-// export const mapInit = position => {
-//   mapboxgl.accessToken =
-//     'pk.eyJ1IjoiZmx1aWQxNCIsImEiOiJjazZ4eXp5d2QwZWk2M2ZsbTNvMGE0ZmRrIn0.XSK0YW6ckdSAg12F3NRsdg';
-//   const mapBox = new mapboxgl.Map({
-//     container: 'map',
-//     style: 'mapbox://styles/fluid14/ck6xzkds71nzm1ipnfq5k2puw',
-//     center: [position.lng, position.lat],
-//     zoom: 12,
-//   });
-//   // this.showAllVehicles(mapBox, allVehiclesData);
-// };
+const mapInit = position => {
+  mapboxgl.accessToken =
+    'pk.eyJ1IjoiZmx1aWQxNCIsImEiOiJjazZ4eXp5d2QwZWk2M2ZsbTNvMGE0ZmRrIn0.XSK0YW6ckdSAg12F3NRsdg';
+  const mapBox = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/fluid14/ck6xzkds71nzm1ipnfq5k2puw',
+    center: [position.lng, position.lat],
+    zoom: 12,
+  });
+  // this.showAllVehicles(mapBox, allVehiclesData);
+};
+
+export default mapInit;
