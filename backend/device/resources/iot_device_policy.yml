@@ -8,4 +8,4 @@ Resources:
           - Effect: Allow
             Action: "iot:*"
             Resource: "*"
-      PolicyName: IotDevicePolicy
+      PolicyName: IotDevicePolicy-${self:provider.stage}

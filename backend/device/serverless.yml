@@ -1,9 +1,11 @@
-service: deviceapp: transportation-iotorg: opentransportmonitoring
+service: device
+app: transportation-iot
+org: opentransportmonitoring
 
 provider:
   name: aws
   runtime: python3.7
-  stage: dev
+  stage: ${opt:stage, 'dev'}
   region: eu-west-2
 
 plugins:
@@ -13,7 +15,7 @@ package:
   individually: true
   exclude:
     - "**/*"
- 
+
 functions:
   - ${file(create_device_certificates/description.yml)}
   - ${file(register_iot_device/description.yml)}
@@ -26,3 +28,4 @@ resources:
   - ${file(resources/iot_device_policy.yml)}
   - ${file(resources/iot_certificates_storage.yml)}
   - ${file(resources/device_operation_topics.yml)}
+  - ${file(stack_outputs.yml)}

@@ -1,0 +1,40 @@
+service: api
+app: transportation-iot
+org: opentransportmonitoring
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  region: eu-west-2
+
+plugins:
+  - serverless-appsync-plugin
+
+custom:
+  appSync:
+    name: API-${self:provider.stage}
+    authenticationType: API_KEY
+    dataSources:
+      - type: AWS_LAMBDA
+        name: allDevices
+        description: 'Get all devices'
+        config:
+          lambdaFunctionArn:
+            Fn::ImportValue: device-${self:provider.stage}-getRegisteredDevices
+      - type: AWS_LAMBDA
+        name: createDevice
+        decription: 'Create device'
+        config:
+          lambdaFunctionArn:
+            Fn::ImportValue: device-${self:provider.stage}-registerIotDevice
+    mappingTemplates:
+      - dataSource: allDevices
+        type: Query
+        field: allDevices
+        request: standard.request.vtl
+        response: standard.response.vtl
+      - dataSource: createDevice
+        type: Mutation
+        field: createDevice
+        request: standard.request.vtl
+        response: standard.response.vtl

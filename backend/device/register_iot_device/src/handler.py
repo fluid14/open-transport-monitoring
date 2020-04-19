@@ -34,7 +34,7 @@ def register_iot_device(event, context):
 
     queue.publish_message(
         topic_arn=device_registered_topic,
-        message=json.dumps({"deviceName": created_device['deviceName']})
+        message={"deviceName": created_device['name']}
     )
     logger.info('## MESSAGE PUBLISHED TO TOPIC')
     logger.info(device_registered_topic)

@@ -1,0 +1,7 @@
+Outputs:
+      GetRegisteredDevicesLambdaFunctionQualifiedArn:
+        Export:
+          Name: device-${self:provider.stage}-getRegisteredDevices
+      RegisterIotDeviceLambdaFunctionQualifiedArn:
+        Export:
+          Name: device-${self:provider.stage}-registerIotDevice

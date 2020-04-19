@@ -1,0 +1,33 @@
+type Device {
+	name: String!
+	arn: String!
+}
+
+input DeviceMessage {
+	test_data: Int!
+}
+
+type Message {
+	device: String
+	test_data: Int
+}
+
+type Mutation {
+	createDevice(name: String!): Device!
+	publishDeviceMessage(device: String!, message: DeviceMessage!): Message
+}
+
+type Query {
+	allDevices: [Device]!
+}
+
+type Subscription {
+	publishedDeviceMessage(device: String): Message
+		@aws_subscribe(mutations: ["publishDeviceMessage"])
+}
+
+schema {
+	query: Query
+	mutation: Mutation
+	subscription: Subscription
+}

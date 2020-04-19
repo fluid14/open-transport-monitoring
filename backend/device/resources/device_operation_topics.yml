@@ -2,9 +2,9 @@ Resources:
   deviceRegisteredTopic:
     Type: AWS::SNS::Topic
     Properties:
-      TopicName: iot_device_registered
-    
+      TopicName: iot_device_registered_${self:provider.stage}
+
   deviceCertificatesCreatedTopic:
     Type: AWS::SNS::Topic
     Properties:
-      TopicName: iot_device_certificates_created
+      TopicName: iot_device_certificates_created_${self:provider.stage}

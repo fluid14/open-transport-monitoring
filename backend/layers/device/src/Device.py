@@ -14,8 +14,8 @@ class Device:
         device = self.iot_client.create_thing(thingName=device_name)
 
         return {
-            'deviceName': device['thingName'],
-            'deviceArn': device['thingArn']
+            'name': device['thingName'],
+            'arn': device['thingArn']
         }
 
     def list_all(self):

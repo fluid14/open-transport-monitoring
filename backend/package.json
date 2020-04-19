@@ -11,6 +11,7 @@
   "devDependencies": {
     "serverless-iam-roles-per-function": "^2.0.2",
     "serverless-python-requirements": "^5.0.1",
-    "serverless-scriptable-plugin": "^1.0.5"
+    "serverless-scriptable-plugin": "^1.0.5",
+    "serverless-appsync-plugin": "^1.2.0"
   }
 }

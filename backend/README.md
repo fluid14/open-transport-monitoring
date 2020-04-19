@@ -19,10 +19,14 @@ $ sls login
 $ cd device
 $ sls deploy
 ```
+Można też stworzyć odrębne środowisko podając parametr `stage`
+```sh
+$ sls deploy --stage test
+```
 
 ### Local development
 Żeby odpalić lambdę lokalnie możemy użyć następującego polecenia
-```shell script
+```sh
 $ py invoke_lambda.py -f nazwaFunkcji -s nazwaSerwisu
 ```
 gdzie `nazwaFunkcji` to nazwa funkcji określona w pliku `serverless.yml`
