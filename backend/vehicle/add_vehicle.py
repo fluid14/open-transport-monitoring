@@ -1,4 +1,5 @@
 from DbClient import DbClient
+from vehicle_errors import ResourceNotFoundException
 import logging
 import os
 
@@ -26,4 +27,4 @@ def lambda_handler(event, context):
     if result:
         return result
     else:
-        raise Exception("Error while adding vehicle")
+        raise ResourceNotFoundException

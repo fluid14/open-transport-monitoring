@@ -1,6 +1,7 @@
 import psycopg2
 import logging
 import os
+from vehicle_errors import DbClientException
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -25,8 +26,8 @@ class DbClient:
                                           database=self.db_name)
             self.connection = connection
             logger.info("Connection to PostgreSQL successful")
-        except (Exception, psycopg2.Error) as error:
-            raise error
+        except psycopg2.Error:
+            raise DbClientException
 
     def select(self, query, params):
         try:
@@ -44,8 +45,9 @@ class DbClient:
             else:
                 return None
 
-        except (Exception, psycopg2.Error) as error:
-            logging.exception("Error while fetching data from PostgreSQL", error)
+        except psycopg2.Error:
+            logging.exception("Error while fetching data from PostgreSQL")
+            raise DbClientException
 
         finally:
             if self.connection:
@@ -65,8 +67,9 @@ class DbClient:
             else:
                 return None
 
-        except (Exception, psycopg2.Error) as error:
-            logging.exception("Error while fetching data from PostgreSQL", error)
+        except psycopg2.Error:
+            logging.exception("Error while fetching data from PostgreSQL")
+            raise DbClientException
 
         finally:
             if self.connection:
