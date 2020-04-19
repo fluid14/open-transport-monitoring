@@ -22,8 +22,6 @@ def lambda_handler(event, context):
     logger.info(result)
 
     if result:
-        return {
-            'body': result
-        }
+        return result
     else:
         raise Exception("Error while reading vehicle")
