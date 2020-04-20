@@ -23,6 +23,6 @@ def lambda_handler(event, context):
     logger.info(result)
 
     if result:
-        return result
+        return True
     else:
         raise ResourceNotFoundException

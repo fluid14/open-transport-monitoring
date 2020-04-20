@@ -25,6 +25,10 @@ def lambda_handler(event, context):
     logger.info(result)
 
     if result:
+        db_client.connect()
+        params = None
+        query = "SELECT * FROM vehicles WHERE id = (SELECT max(id) FROM vehicles)"
+        result = db_client.select(query, params)
         return result
     else:
         raise ResourceNotFoundException

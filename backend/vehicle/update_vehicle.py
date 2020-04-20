@@ -23,9 +23,11 @@ def lambda_handler(event, context):
     params = (reg_plate, brand, model, vehicle_id)
     query = "update vehicles set reg_plate=%s,  brand=%s,  model=%s where id=%s"
     result = db_client.execute(query, params)
-    logger.info(result)
-
     if result:
+        db_client.connect()
+        query = "select * from vehicles where id=%s"
+        params = (vehicle_id,)
+        result = db_client.select(query, params)
         return result
     else:
         raise ResourceNotFoundException
