@@ -30,6 +30,8 @@ class DbClient:
             raise DbClientException
 
     def select(self, query, params):
+        if self.connection.closed:
+            self.connect()
         try:
             cursor = self.connection.cursor()
             if params:
@@ -56,6 +58,8 @@ class DbClient:
                 logging.info("PostgreSQL connection is closed")
 
     def execute(self, query, params):
+        if self.connection.closed:
+            self.connect()
         try:
             cursor = self.connection.cursor()
             cursor.execute(query, params)
