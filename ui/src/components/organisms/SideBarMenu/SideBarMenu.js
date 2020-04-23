@@ -11,7 +11,7 @@ const SideBarMenuWrap = styled.div`
   height: 100vh;
   width: 18.9rem;
   background-color: ${({ theme }) => theme.colors.purpleDark};
-  box-shadow: 0.5px 0px 10px black;
+  box-shadow: 0.5px 0 10px black;
   padding: ${({ theme }) => theme.padding.wrap};
   transition: 0.3s ease;
   display: block;
@@ -36,20 +36,35 @@ const MenuLink = styled.a`
   font-weight: 600;
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
+  opacity: ${({ isNewVehicleBarActive }) => (isNewVehicleBarActive === true ? '0.9' : '0.5')};
+  transition: 0.3s ease;
+
+  &.active {
+    opacity: 0.9;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+
   &::after {
     content: '';
     display: block;
     position: absolute;
-    bottom: -3px;
+    bottom: -4px;
     left: 0;
-    width: ${({ isNewVehicleBarActive }) => (isNewVehicleBarActive === true ? '100%' : '20px')};
+    width: ${({ isNewVehicleBarActive }) => (isNewVehicleBarActive === true ? '20px' : '0')};
     height: 1px;
+    border-radius: 4px;
     background-color: ${({ theme }) => theme.colors.white};
     transition: 0.3s ease;
   }
 
-  &:hover::after,
   &.active::after {
+    width: 20px;
+  }
+
+  &:hover::after {
     width: 100%;
   }
 `;

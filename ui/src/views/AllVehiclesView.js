@@ -1,92 +1,32 @@
-import React from 'react';
-import {Consumer} from 'context/GridViewType';
+import React, { Component } from 'react';
+import GridListTemplate from '../templates/GridListTemplate';
+import VehicleCard from 'components/molecules/VehicleCard';
+import dummyData from 'data/dummyDataVehicle.json';
 
-import GridListTemplate from "../templates/GridListTemplate";
-import VehicleCard from "../components/molecules/VehicleCard";
-
-const AllVehiclesView = () => (
-    <Consumer>
-        {gridView => (
-            <GridListTemplate viewStyle={gridView.type}>
-                <>
-                    <VehicleCard
-                        to="/vehicle/123"
-                        cardStyle={gridView.type}
-                        brand="Ford"
-                        model="F-Max"
-                        registration="Pz12345"
-                        status
-                    />
-                    <VehicleCard
-                        to="/vehicle/123"
-                        cardStyle={gridView.type}
-                        brand="Ford"
-                        model="F-Max"
-                        registration="Pz12345"
-                    />
-                    <VehicleCard
-                        to="/vehicle/123"
-                        cardStyle={gridView.type}
-                        brand="Ford"
-                        model="F-Max"
-                        registration="Pz12345"
-                    />
-                    <VehicleCard
-                        to="/vehicle/123"
-                        cardStyle={gridView.type}
-                        brand="Ford"
-                        model="F-Max"
-                        registration="Pz12345"
-                        status
-                    />
-                    <VehicleCard
-                        to="/vehicle/123"
-                        cardStyle={gridView.type}
-                        brand="Ford"
-                        model="F-Max"
-                        registration="Pz12345"
-                    />
-                    <VehicleCard
-                        to="/vehicle/123"
-                        cardStyle={gridView.type}
-                        brand="Ford"
-                        model="F-Max"
-                        registration="Pz12345"
-                    />
-                    <VehicleCard
-                        to="/vehicle/123"
-                        cardStyle={gridView.type}
-                        brand="Ford"
-                        model="F-Max"
-                        registration="Pz12345"
-                        status
-                    />
-                    <VehicleCard
-                        to="/vehicle/123"
-                        cardStyle={gridView.type}
-                        brand="Ford"
-                        model="F-Max"
-                        registration="Pz12345"
-                        status
-                    />
-                    <VehicleCard
-                        to="/vehicle/123"
-                        cardStyle={gridView.type}
-                        brand="Ford"
-                        model="F-Max"
-                        registration="Pz12345"
-                        status
-                    />
-                    <VehicleCard
-                        to="/vehicle/123"
-                        cardStyle={gridView.type}
-                        brand="Ford"
-                        model="F-Max"
-                        registration="Pz12345"
-                    />
-                </>
-            </GridListTemplate>
-        )}</Consumer>
-);
+class AllVehiclesView extends Component {
+  render() {
+    return (
+      <GridListTemplate>
+        <>
+          {dummyData.map(vehicle => {
+            const { id, brand, model, fuel, locale, registration, status } = vehicle;
+            return (
+              <VehicleCard
+                key={id}
+                to={`/vehicle/${id}`}
+                brand={brand}
+                model={model}
+                locale={locale}
+                fuel={fuel}
+                registration={registration}
+                status={status}
+              />
+            );
+          })}
+        </>
+      </GridListTemplate>
+    );
+  }
+}
 
 export default AllVehiclesView;

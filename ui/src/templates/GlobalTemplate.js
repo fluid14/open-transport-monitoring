@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import GlobalStyle from 'theme/GlobalStyle';
 import theme from 'theme/theme';
-import styled, { ThemeProvider } from 'styled-components/macro';
+import styled, { ThemeProvider } from 'styled-components';
 import TopBar from 'components/organisms/TopBar/TopBar';
 import SideBarMenu from 'components/organisms/SideBarMenu/SideBarMenu';
 import NewVehicleBar from 'components/organisms/NewVehicleBar/NewVehicleBar';
 import Map from 'components/organisms/Map/Map';
-import { GridViewTypeProvider } from 'context/GridViewType';
+import { GridViewTypeProvider } from 'context/GridViewTypeContext';
 
 const GlobalWrapper = styled.div`
   display: flex;
@@ -19,7 +19,6 @@ const GlobalWrapper = styled.div`
 const ContentWrapper = styled.div`
   position: relative;
   width: 100%;
-  max-height: 100vh;
   overflow-y: scroll;
   padding: 0 3.7rem;
   &::-webkit-scrollbar {
@@ -42,10 +41,9 @@ class GlobalTemplate extends Component {
   };
 
   showNewVehicleBar = () => {
-    const { isNewVehicleBarVisible } = this.state;
-    this.setState({
-      isNewVehicleBarVisible: !isNewVehicleBarVisible,
-    });
+    this.setState(prevState => ({
+      isNewVehicleBarVisible: !prevState.isNewVehicleBarVisible,
+    }));
   };
 
   render() {
@@ -61,7 +59,7 @@ class GlobalTemplate extends Component {
               showNewVehicleBar={this.showNewVehicleBar}
               isNewVehicleBarActive={isNewVehicleBarVisible}
             />
-            <NewVehicleBar isVisible={isNewVehicleBarVisible} />
+            <NewVehicleBar isVisible={isNewVehicleBarVisible} showBar={this.showNewVehicleBar} />
             <ViewWrapper>
               <GridViewTypeProvider>
                 <>

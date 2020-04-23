@@ -29,10 +29,18 @@ const GlobalStyle = createGlobalStyle`
       font-size: 93%;
     }
   }
-  
+    
   body {
     font-size: 1.6rem;
     background-color: ${({ theme }) => theme.colors.purple};
+    background:
+       repeating-linear-gradient(to right,
+        transparent 0  calc(60px - 1px),
+        rgba(255,255,255,0.1) calc(60px - 1px) 60px),
+        
+      repeating-linear-gradient(to bottom,
+        transparent 0 calc(60px - 1px),
+        rgba(255,255,255,0.1) calc(60px - 1px) 60px) ${({ theme }) => theme.colors.purple};
     font-family: 'Nunito', sans-serif;
     min-width: 1200px;
     overflow-x: hidden;

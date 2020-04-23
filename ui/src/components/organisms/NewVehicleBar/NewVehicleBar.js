@@ -5,8 +5,8 @@ import translations from 'translations/pl/newVehicleBar.json';
 import Input from 'components/atoms/Input';
 import Button from 'components/atoms/Button';
 
-const VehicleBarWrap = styled.div`
-  position: absolute;
+const NewVehicleBarWrap = styled.div`
+  position: fixed;
   top: 0;
   right: 0;
   transform: ${({ isVisible }) => (isVisible === true ? 'translateX(0)' : 'translateX(200%)')};
@@ -41,9 +41,68 @@ const SubmitButton = styled(Button)`
   margin-top: 2rem;
 `;
 
-const NewVehicleBar = ({ isVisible }) => (
+const Arrow = styled.div`
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  cursor: pointer;
+  overflow: hidden;
+
+  span {
+    position: absolute;
+    top: 50%;
+    right: 1px;
+    display: block;
+    width: 90%;
+    height: 2px;
+    background-color: ${({ theme }) => theme.colors.black};
+    border-radius: 6px;
+    transition: 0.3s ease;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 45%;
+      height: 2px;
+      background-color: ${({ theme }) => theme.colors.black};
+      transform: translateY(0.5px) rotate(45deg);
+      transform-origin: 100%;
+      border-radius: 6px;
+      transition: rotate 0.3s 0.3s ease, transform 0.3s ease;
+    }
+    &::after {
+      transform: translateY(-0.5px) rotate(-45deg);
+    }
+  }
+
+  &:hover span {
+    transform: translateX(-200%);
+  }
+
+  &:hover span::after,
+  &:hover span::before {
+    width: 80%;
+    transform-origin: 50%;
+    transform: translateX(240%) rotate(45deg);
+  }
+
+  &:hover span::before {
+    transform: translateX(240%) rotate(-45deg);
+  }
+`;
+
+const NewVehicleBar = ({ isVisible, showBar }) => (
   <>
-    <VehicleBarWrap isVisible={isVisible}>
+    <NewVehicleBarWrap isVisible={isVisible}>
+      <Arrow onClick={showBar}>
+        <span></span>
+      </Arrow>
       <BarTitle>{translations.barTitle}</BarTitle>
       <Form>
         <Input placeholder={translations.mark} type="text" />
@@ -52,12 +111,13 @@ const NewVehicleBar = ({ isVisible }) => (
         <Input placeholder={translations.device_id} type="text" />
         <SubmitButton type="submit">{translations.add}</SubmitButton>
       </Form>
-    </VehicleBarWrap>
+    </NewVehicleBarWrap>
   </>
 );
 
 NewVehicleBar.propTypes = {
   isVisible: PropTypes.bool.isRequired,
+  showBar: PropTypes.func.isRequired,
 };
 
 export default NewVehicleBar;

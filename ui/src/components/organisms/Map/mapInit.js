@@ -1,10 +1,7 @@
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 import route1 from 'data/route_1.json';
-// Symulacja pobrania danych
-// import allVehiclesData from 'data/allVehicles.json';
 
-const showAllVehicles = (mapBox, allVehicles) => {
-  const vehicleCount = Object.keys(allVehicles).length;
+const showAllVehicles = mapBox => {
   let geoJsonData;
   let counter = 0;
   geoJsonData = {
@@ -51,7 +48,7 @@ const mapInit = position => {
     center: [position.lng, position.lat],
     zoom: 12,
   });
-  // this.showAllVehicles(mapBox, allVehiclesData);
+  showAllVehicles(mapBox);
 };
 
 export default mapInit;
