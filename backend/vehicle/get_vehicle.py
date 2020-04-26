@@ -14,7 +14,7 @@ db_client = DbClient(os.environ['DB_NAME'],
 connection = db_client.connect()
 
 
-def lambda_handler(event, context):
+def get_vehicle(event, context):
     logger.info(event)
     vehicle_id = event['id']
     query = "select * from vehicles where id=%s"

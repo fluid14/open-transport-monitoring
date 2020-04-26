@@ -14,7 +14,7 @@ db_client = DbClient(os.environ['DB_NAME'],
 connection = db_client.connect()
 
 
-def lambda_handler(event, context):
+def get_all_vehicles(event, context):
     query = "select * from vehicles"
     params = None
     result = db_client.select(query, params)

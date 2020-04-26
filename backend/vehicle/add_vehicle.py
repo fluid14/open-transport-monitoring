@@ -14,7 +14,7 @@ db_client = DbClient(os.environ['DB_NAME'],
 connection = db_client.connect()
 
 
-def lambda_handler(event, context):
+def add_vehicle(event, context):
     logger.info(event)
     reg_plate = event['reg_plate']
     brand = event['brand']
