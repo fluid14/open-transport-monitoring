@@ -15,9 +15,13 @@ connection = db_client.connect()
 
 
 def get_all_vehicles(event, context):
-    query = "select * from vehicles"
     params = None
-    result = db_client.select(query, params)
+    return get_all_vehicles_logic(params, db_client)
+
+
+def get_all_vehicles_logic(data, storage):
+    query = "select * from vehicles"
+    result = storage.select(query, data)
     logger.info(result)
 
     if result:

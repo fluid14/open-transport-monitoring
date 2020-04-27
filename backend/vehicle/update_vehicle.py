@@ -16,18 +16,28 @@ connection = db_client.connect()
 
 def update_vehicle(event, context):
     logger.info(event)
-    reg_plate = event['reg_plate']
-    brand = event['brand']
-    model = event['model']
-    vehicle_id = event['id']
-    params = (reg_plate, brand, model, vehicle_id)
+    params = {
+        "reg_plate": event['reg_plate'],
+        "brand": event['brand'],
+        "model": event['model'],
+        "vehicle_id": event['id']
+    }
+    return update_vehicle_logic(params, db_client)
+
+
+def update_vehicle_logic(data, storage):
+    params = (data["reg_plate"],
+              data["brand"],
+              data["model"],
+              data["vehicle_id"])
     query = "update vehicles set reg_plate=%s,  brand=%s,  model=%s where id=%s"
-    result = db_client.execute(query, params)
+    result = storage.execute(query, params)
     if result:
-        db_client.connect()
+        storage.connect()
         query = "select * from vehicles where id=%s"
+        vehicle_id = data["vehicle_id"]
         params = (vehicle_id,)
-        result = db_client.select(query, params)
+        result = storage.select(query, params)
         return result
     else:
         raise ResourceNotFoundException

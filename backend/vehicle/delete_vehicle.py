@@ -17,9 +17,13 @@ connection = db_client.connect()
 def delete_vehicle(event, context):
     logger.info(event)
     vehicle_id = event['id']
+    return delete_vehicle_logic(vehicle_id, db_client)
+
+
+def delete_vehicle_logic(data, storage):
     query = "delete from vehicles where id=%s"
-    params = (vehicle_id,)
-    result = db_client.execute(query, params)
+    params = (data,)
+    result = storage.execute(query, params)
     logger.info(result)
 
     if result:

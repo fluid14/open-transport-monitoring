@@ -20,15 +20,19 @@ def add_vehicle(event, context):
     brand = event['brand']
     model = event['model']
     params = (reg_plate, brand, model)
+    return add_vehicle_logic(params, db_client)
+
+
+def add_vehicle_logic(data, storage):
     query = "insert into vehicles (reg_plate, brand, model) values (%s, %s, %s)"
-    result = db_client.execute(query, params)
+    result = storage.execute(query, data)
     logger.info(result)
 
     if result:
-        db_client.connect()
+        storage.connect()
         params = None
         query = "SELECT * FROM vehicles WHERE id = (SELECT max(id) FROM vehicles)"
-        result = db_client.select(query, params)
+        result = storage.select(query, params)
         return result
     else:
         raise ResourceNotFoundException

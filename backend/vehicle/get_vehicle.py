@@ -17,9 +17,13 @@ connection = db_client.connect()
 def get_vehicle(event, context):
     logger.info(event)
     vehicle_id = event['id']
+    return get_vehicle_logic(vehicle_id, db_client)
+
+
+def get_vehicle_logic(data, storage):
     query = "select * from vehicles where id=%s"
-    params = (vehicle_id,)
-    result = db_client.execute(query, params)
+    params = (data,)
+    result = storage.execute(query, params)
     logger.info(result)
 
     if result:
