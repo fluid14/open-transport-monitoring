@@ -1,5 +1,5 @@
 from DbClient import DbClient
-from vehicle_errors import ResourceNotFoundException
+from get_all_vehicles_logic import get_all_vehicles_logic
 import logging
 import os
 
@@ -17,14 +17,3 @@ connection = db_client.connect()
 def get_all_vehicles(event, context):
     params = None
     return get_all_vehicles_logic(params, db_client)
-
-
-def get_all_vehicles_logic(data, storage):
-    query = "select * from vehicles"
-    result = storage.select(query, data)
-    logger.info(result)
-
-    if result:
-        return result
-    else:
-        raise ResourceNotFoundException

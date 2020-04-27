@@ -1,5 +1,5 @@
 from DbClient import DbClient
-from vehicle_errors import ResourceNotFoundException
+from get_vehicle_logic import get_vehicle_logic
 import logging
 import os
 
@@ -19,14 +19,3 @@ def get_vehicle(event, context):
     vehicle_id = event['id']
     return get_vehicle_logic(vehicle_id, db_client)
 
-
-def get_vehicle_logic(data, storage):
-    query = "select * from vehicles where id=%s"
-    params = (data,)
-    result = storage.execute(query, params)
-    logger.info(result)
-
-    if result:
-        return result
-    else:
-        raise ResourceNotFoundException

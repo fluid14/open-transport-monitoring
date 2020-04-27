@@ -1,5 +1,5 @@
 from DbClient import DbClient
-from vehicle_errors import ResourceNotFoundException
+from delete_vehicle_logic import delete_vehicle_logic
 import logging
 import os
 
@@ -18,15 +18,3 @@ def delete_vehicle(event, context):
     logger.info(event)
     vehicle_id = event['id']
     return delete_vehicle_logic(vehicle_id, db_client)
-
-
-def delete_vehicle_logic(data, storage):
-    query = "delete from vehicles where id=%s"
-    params = (data,)
-    result = storage.execute(query, params)
-    logger.info(result)
-
-    if result:
-        return True
-    else:
-        raise ResourceNotFoundException

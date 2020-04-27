@@ -1,5 +1,5 @@
 from DbClient import DbClient
-from vehicle_errors import ResourceNotFoundException
+from add_vehicle_logic import add_vehicle_logic
 import logging
 import os
 
@@ -23,16 +23,3 @@ def add_vehicle(event, context):
     return add_vehicle_logic(params, db_client)
 
 
-def add_vehicle_logic(data, storage):
-    query = "insert into vehicles (reg_plate, brand, model) values (%s, %s, %s)"
-    result = storage.execute(query, data)
-    logger.info(result)
-
-    if result:
-        storage.connect()
-        params = None
-        query = "SELECT * FROM vehicles WHERE id = (SELECT max(id) FROM vehicles)"
-        result = storage.select(query, params)
-        return result
-    else:
-        raise ResourceNotFoundException
