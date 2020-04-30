@@ -15,5 +15,4 @@ connection = db_client.connect()
 
 
 def get_all_vehicles(event, context):
-    params = None
-    return get_all_vehicles_logic(params, db_client)
+    return get_all_vehicles_logic(db_client)

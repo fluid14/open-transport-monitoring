@@ -16,12 +16,10 @@ connection = db_client.connect()
 
 def update_vehicle(event, context):
     logger.info(event)
-    params = {
-        "reg_plate": event['reg_plate'],
-        "brand": event['brand'],
-        "model": event['model'],
-        "vehicle_id": event['id']
-    }
+    params = (event["reg_plate"],
+              event["brand"],
+              event["model"],
+              event["vehicle_id"])
     return update_vehicle_logic(params, db_client)
 
 

@@ -5,9 +5,9 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 
-def get_all_vehicles_logic(data, storage):
+def get_all_vehicles_logic(storage):
     query = "select * from vehicles"
-    result = storage.select(query, data)
+    result = storage.select(query, None)
     logger.info(result)
 
     if result:

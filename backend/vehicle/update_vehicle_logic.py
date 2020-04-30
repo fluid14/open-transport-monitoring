@@ -6,16 +6,12 @@ logger.setLevel(logging.INFO)
 
 
 def update_vehicle_logic(data, storage):
-    params = (data["reg_plate"],
-              data["brand"],
-              data["model"],
-              data["vehicle_id"])
     query = "update vehicles set reg_plate=%s,  brand=%s,  model=%s where id=%s"
-    result = storage.execute(query, params)
+    result = storage.execute(query, data)
     if result:
         storage.connect()
         query = "select * from vehicles where id=%s"
-        vehicle_id = data["vehicle_id"]
+        vehicle_id = data[3]
         params = (vehicle_id,)
         result = storage.select(query, params)
         return result
