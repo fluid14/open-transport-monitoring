@@ -1,7 +1,7 @@
 import unittest
 from add_vehicle_logic import add_vehicle_logic
-from vehicle_errors import ResourceNotFoundException
 from DatabaseStub import DatabaseStub
+from vehicle_exceptions import VehicleNotFound
 
 
 class TestAddVehicle(unittest.TestCase):
@@ -15,7 +15,7 @@ class TestAddVehicle(unittest.TestCase):
 
     def test_error_raised_vehicle_not_added(self):
         dummy_params = None
-        self.assertRaises(ResourceNotFoundException, add_vehicle_logic, dummy_params, self.storage_stub)
+        self.assertRaises(VehicleNotFound, add_vehicle_logic, dummy_params, self.storage_stub)
 
 
 if __name__ == '__main__':

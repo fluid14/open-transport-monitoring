@@ -1,0 +1,35 @@
+service: sql-layer
+app: transportation-iot
+org: opentransportmonitoring
+
+provider:
+  name: aws
+  runtime: python3.7
+  stage: dev
+  region: eu-west-2
+
+plugins:
+  - serverless-scriptable-plugin
+
+custom:
+  runtime: python3.7
+  artifact: .serverless/sql.zip
+  scriptHooks:
+    after:package:createDeploymentArtifacts:
+      python ../../scripts/prepare_custom_layer.py . ${self:custom.artifact} ${self:custom.runtime}
+
+layers:
+  sql:
+    package:
+      artifact: ${self:custom.artifact}
+    compatibleRuntimes:
+      - ${self:custom.runtime}
+
+resources:
+  Outputs:
+    queueLayerExport:
+        Value:
+          Ref: SqlLambdaLayer
+        Export:
+          Name: SqlLambdaLayer
+

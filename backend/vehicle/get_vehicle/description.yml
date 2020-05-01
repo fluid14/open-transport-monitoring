@@ -1,0 +1,10 @@
+getVehicle:
+  handler: get_vehicle/src/handler.get_vehicle
+  layers:
+    - Fn::ImportValue:
+        SqlLambdaLayer
+  environment: ${file(db_credentials.yml)}
+  package:
+    include:
+      - get_vehicle/src/*.py
+      - shared/vehicle_exceptions.py

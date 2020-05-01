@@ -1,7 +1,7 @@
 import unittest
 from update_vehicle_logic import update_vehicle_logic
-from vehicle_errors import ResourceNotFoundException
 from DatabaseStub import DatabaseStub
+from vehicle_exceptions import VehicleNotFound
 
 
 class MyTestCase(unittest.TestCase):
@@ -15,7 +15,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_error_raised_when_update_failed(self):
         dummy_params = None
-        self.assertRaises(ResourceNotFoundException, update_vehicle_logic, dummy_params, self.storage_stub)
+        self.assertRaises(VehicleNotFound, update_vehicle_logic, dummy_params, self.storage_stub)
 
 
 if __name__ == '__main__':

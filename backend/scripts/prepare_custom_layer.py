@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
 import sys
+import subprocess
+
 from shutil import copy, make_archive, rmtree
 from os import listdir, makedirs, path
 
@@ -25,6 +27,21 @@ source_files = listdir(source_path)
 # Create temporary package structure
 makedirs(artifact_path, exist_ok=True)
 
+requirements_file = path.join(layer_dir, 'requirements.txt')
+
+if path.exists(requirements_file):
+    subprocess.check_call([
+        sys.executable,
+        "-m",
+        "pip",
+        "--no-cache-dir",
+        "install",
+        "-r",
+        requirements_file,
+        "-t",
+        artifact_path
+    ])
+
 # Copy source files to temporary package structure
 for file in (f for f in source_files if path.isfile(path.join(source_path, f))):
     copy(
@@ -37,3 +54,4 @@ make_archive(main_package_path, 'zip', main_package_path)
 
 # Remove temporary structure
 rmtree(main_package_path)
+

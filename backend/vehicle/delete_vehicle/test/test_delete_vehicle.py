@@ -1,7 +1,7 @@
 import unittest
 from delete_vehicle_logic import delete_vehicle_logic
-from vehicle_errors import ResourceNotFoundException
 from DatabaseStub import DatabaseStub
+from vehicle_exceptions import VehicleNotFound
 
 
 class TestDeleteVehicle(unittest.TestCase):
@@ -15,7 +15,7 @@ class TestDeleteVehicle(unittest.TestCase):
 
     def test_error_raised_when_deleting_failed(self):
         dummy_params = None
-        self.assertRaises(ResourceNotFoundException, delete_vehicle_logic, dummy_params, self.storage_stub)
+        self.assertRaises(VehicleNotFound, delete_vehicle_logic, dummy_params, self.storage_stub)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,26 @@
+service: vehicle
+app: transportation-iot
+org: opentransportmonitoring
+
+provider:
+  name: aws
+  runtime: python3.7
+  stage: ${opt:stage, 'dev'}
+  region: eu-west-2
+
+custom:
+
+plugins:
+  - serverless-iam-roles-per-function
+
+package:
+  individually: true
+  exclude:
+    - "**/*"
+
+functions:
+  - ${file(add_vehicle/description.yml)}
+  - ${file(delete_vehicle/description.yml)}
+  - ${file(get_all_vehicles/description.yml)}
+  - ${file(get_vehicle/description.yml)}
+  - ${file(update_vehicle/description.yml)}

@@ -1,0 +1,2 @@
+class SqlClientException(Exception):
+    pass
