@@ -15,10 +15,25 @@ type Message {
 type Mutation {
 	createDevice(name: String!): Device!
 	publishDeviceMessage(device: String!, message: DeviceMessage!): Message
+	addVehicle(deviceID: String!,
+		numberPlate: String!,
+		brand: String!,
+		model: String!
+	): Vehicle
+	updateVehicle(
+		vehicleID: String!,
+		deviceID: String!,
+		numberPlate: String!,
+		brand: String!,
+		model: String!
+	): Vehicle
+	deleteVehicle(vehicleId: String!): Vehicle
 }
 
 type Query {
 	allDevices: [Device]!
+	allVehicles: [Vehicle]
+	singleVehicle(vehicleId: String!): Vehicle
 }
 
 type Subscription {
@@ -30,4 +45,12 @@ schema {
 	query: Query
 	mutation: Mutation
 	subscription: Subscription
+}
+
+type Vehicle {
+	VehicleID: String!
+	DeviceID: String!
+	NumberPlate: String!
+	Brand: String!
+	Model: String!
 }

@@ -23,10 +23,40 @@ custom:
             Fn::ImportValue: device-${self:provider.stage}-getRegisteredDevices
       - type: AWS_LAMBDA
         name: createDevice
-        decription: 'Create device'
+        description: 'Create device'
         config:
           lambdaFunctionArn:
             Fn::ImportValue: device-${self:provider.stage}-registerIotDevice
+      - type: AWS_LAMBDA
+        name: addVehicle
+        description: 'Add vehicle'
+        config:
+          lambdaFunctionArn:
+            Fn::ImportValue: vehicle-${self:provider.stage}-addVehicle
+      - type: AWS_LAMBDA
+        name: deleteVehicle
+        description: 'Delete vehicle'
+        config:
+          lambdaFunctionArn:
+            Fn::ImportValue: vehicle-${self:provider.stage}-deleteVehicle
+      - type: AWS_LAMBDA
+        name: getAllVehicles
+        description: 'Get all vehicles'
+        config:
+          lambdaFunctionArn:
+            Fn::ImportValue: vehicle-${self:provider.stage}-getAllVehicles
+      - type: AWS_LAMBDA
+        name: getVehicle
+        description: 'Get vehicle'
+        config:
+          lambdaFunctionArn:
+            Fn::ImportValue: vehicle-${self:provider.stage}-getVehicle
+      - type: AWS_LAMBDA
+        name: updateVehicle
+        description: 'Update vehicle'
+        config:
+          lambdaFunctionArn:
+            Fn::ImportValue: vehicle-${self:provider.stage}-updateVehicle
     mappingTemplates:
       - dataSource: allDevices
         type: Query
@@ -36,5 +66,30 @@ custom:
       - dataSource: createDevice
         type: Mutation
         field: createDevice
+        request: standard.request.vtl
+        response: standard.response.vtl
+      - dataSource: addVehicle
+        type: Mutation
+        field: addVehicle
+        request: standard.request.vtl
+        response: standard.response.vtl
+      - dataSource: getVehicle
+        type: Query
+        field: singleVehicle
+        request: standard.request.vtl
+        response: standard.response.vtl
+      - dataSource: getAllVehicles
+        type: Query
+        field: allVehicles
+        request: standard.request.vtl
+        response: standard.response.vtl
+      - dataSource: updateVehicle
+        type: Mutation
+        field: updateVehicle
+        request: standard.request.vtl
+        response: standard.response.vtl
+      - dataSource: deleteVehicle
+        type: Mutation
+        field: deleteVehicle
         request: standard.request.vtl
         response: standard.response.vtl

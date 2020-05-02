@@ -1,0 +1,16 @@
+Outputs:
+      AddVehicleLambdaFunctionQualifiedArn:
+        Export:
+          Name: vehicle-${self:provider.stage}-addVehicle
+      DeleteVehicleLambdaFunctionQualifiedArn:
+        Export:
+          Name: vehicle-${self:provider.stage}-deleteVehicle
+      GetAllVehiclesLambdaFunctionQualifiedArn:
+        Export:
+          Name: vehicle-${self:provider.stage}-getAllVehicles
+      GetVehicleLambdaFunctionQualifiedArn:
+        Export:
+          Name: vehicle-${self:provider.stage}-getVehicle
+      UpdateVehicleLambdaFunctionQualifiedArn:
+        Export:
+          Name: vehicle-${self:provider.stage}-updateVehicle
