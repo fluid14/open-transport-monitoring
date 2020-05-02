@@ -24,3 +24,6 @@ functions:
   - ${file(get_all_vehicles/description.yml)}
   - ${file(get_vehicle/description.yml)}
   - ${file(update_vehicle/description.yml)}
+
+resources:
+  - ${file(stack_outputs.yml)}
