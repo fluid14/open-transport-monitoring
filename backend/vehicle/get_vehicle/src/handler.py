@@ -17,6 +17,6 @@ connection = db_client.connect()
 
 def get_vehicle(event, context):
     logger.info(event)
-    vehicle_id = event['id']
+    vehicle_id = event['vehicleId']
 
     return get_vehicle_logic(vehicle_id, db_client)
