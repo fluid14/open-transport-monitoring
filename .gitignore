@@ -24,6 +24,7 @@ env.yml
 
 # IDE
 .idea
+.vscode
 
 # Python virtual env
 venv
