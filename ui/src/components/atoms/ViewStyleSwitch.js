@@ -21,7 +21,7 @@ const SwitchWrap = styled.a`
     display: block;
     background-color: #fff;
     width: 0.5rem;
-    height: ${({ gridView }) => (gridView ? '0.4rem' : '0.5rem')};
+    height: ${({ gridView }) => (gridView ? '0.3rem' : '0.5rem')};
     margin: 0.2rem;
     border-radius: 1px;
     transition: 0.3s ease;
@@ -51,7 +51,7 @@ const SwitchWrap = styled.a`
       
       span::before,
       span::after{
-        transform: translateY(-50%);
+        transform: translateY(-65%);
       }
   `}
 `;

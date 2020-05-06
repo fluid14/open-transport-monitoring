@@ -1,0 +1,8 @@
+{
+  "coolantTemperature": "temperatura",
+  "oilPressure": "ciśnienie oleju",
+  "battery": "akumulator",
+  "engine": "silnik",
+  "powerSteering": "wspomaganie kierownicy",
+  "abs": "abs"
+}

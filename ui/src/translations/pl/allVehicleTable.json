@@ -1,7 +1,8 @@
 {
   "mark": "Marka",
   "model": "Model",
+  "register": "Rejestracja",
   "locale": "Lokalizacja",
-  "fuel": "Paliwo",
+  "workTime": "Czas jazdy",
   "status": "Status"
 }

@@ -3,7 +3,7 @@
     "id": 123,
     "brand": "Ford",
     "model": "F-Max",
-    "fuel": 30,
+    "workTime": 5,
     "locale": "Warszawa",
     "registration": "W012345",
     "status": true
@@ -12,7 +12,7 @@
     "id": 16543,
     "brand": "Mercedes",
     "model": "Actros",
-    "fuel": 69,
+    "workTime": 3,
     "locale": "Poznań",
     "registration": "PZ543245",
     "status": false
@@ -21,7 +21,7 @@
     "id": 341,
     "brand": "Scania",
     "model": "Amber",
-    "fuel": 49,
+    "workTime": 7,
     "locale": "Wrocław",
     "registration": "PZ543245",
     "status": true
@@ -30,7 +30,7 @@
     "id": 989,
     "brand": "Italeri",
     "model": "Freightliner",
-    "fuel": 14,
+    "workTime": 8,
     "locale": "Katowice",
     "registration": "PZ543245",
     "status": false
@@ -39,7 +39,7 @@
     "id": 7473,
     "brand": "Renault",
     "model": "Magnum",
-    "fuel": 35,
+    "workTime": 2,
     "locale": "Gdańsk",
     "registration": "PZ543245",
     "status": true
@@ -48,7 +48,7 @@
     "id": 92837,
     "brand": "Ford",
     "model": "F-Max",
-    "fuel": 98,
+    "workTime": 4,
     "locale": "Berlin",
     "registration": "PZ543245",
     "status": true
@@ -57,7 +57,7 @@
     "id": 49723,
     "brand": "Mercedes",
     "model": "Actros",
-    "fuel": 47,
+    "workTime": 6,
     "locale": "Paryż",
     "registration": "PZ543245",
     "status": false
@@ -66,7 +66,7 @@
     "id": 48726,
     "brand": "Volvo",
     "model": "Globetrotter Xl",
-    "fuel": 89,
+    "workTime": 1,
     "locale": "Antoninek",
     "registration": "PZ543245",
     "status": true
@@ -75,7 +75,7 @@
     "id": 948823,
     "brand": "Iveco",
     "model": "Stralis",
-    "fuel": 45,
+    "workTime": 0.45,
     "locale": "Swarzędz",
     "registration": "PZ543245",
     "status": false
@@ -84,7 +84,7 @@
     "id": 1553284,
     "brand": "Ford",
     "model": "F-Max",
-    "fuel": 76,
+    "workTime": 3,
     "locale": "Gruszczyn",
     "registration": "PZ543245",
     "status": false

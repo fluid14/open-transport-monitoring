@@ -1,3 +1,11 @@
 {
-  "truckAlt": "Ciężarówka"
+  "truckAlt": "Ciężarówka",
+  "speed": "Prędkość",
+  "rpm": "Obroty silnika",
+  "oilPressure": "Ciśnienie oleju",
+  "oilTemperature": "Temperatura oleju",
+  "lFrontTirePressure": "Ciśnienie L Przód",
+  "lRearTirePressure": "Ciśnienie L Tył",
+  "rFrontTirePressure": "Ciśnienie P Przód",
+  "rRearTirePressure": "Ciśnienie P Tył"
 }

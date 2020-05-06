@@ -1,0 +1,13 @@
+{
+  "spec": "Specyfikacja",
+  "mileage": "Przebieg",
+  "locale": "Lokalizacja",
+  "fuelConsumption": "Spalanie",
+  "overall": "Ogólne",
+  "rideTime": "Czas jazdy",
+  "fuelLevel": "Poziom paliwa",
+  "fuelRange": "Zasięg",
+  "carReviewDate": "Przegląd",
+  "insurance": "Ubezpieczenie",
+  "errors": "Błędy"
+}

@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import GlobalStyle from 'theme/GlobalStyle';
 import theme from 'theme/theme';
 import styled, { ThemeProvider } from 'styled-components';
-import TopBar from 'components/organisms/TopBar/TopBar';
 import SideBarMenu from 'components/organisms/SideBarMenu/SideBarMenu';
 import NewVehicleBar from 'components/organisms/NewVehicleBar/NewVehicleBar';
-import Map from 'components/organisms/Map/Map';
 import { GridViewTypeProvider } from 'context/GridViewTypeContext';
 
 const GlobalWrapper = styled.div`
@@ -14,16 +12,6 @@ const GlobalWrapper = styled.div`
   justify-content: space-between;
   width: 100%;
   height: auto;
-`;
-
-const ContentWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  overflow-y: scroll;
-  padding: 0 3.7rem;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 const ViewWrapper = styled.div`
@@ -61,13 +49,7 @@ class GlobalTemplate extends Component {
             />
             <NewVehicleBar isVisible={isNewVehicleBarVisible} showBar={this.showNewVehicleBar} />
             <ViewWrapper>
-              <GridViewTypeProvider>
-                <>
-                  <TopBar userName={user === '' ? 'Jan Nowak' : user} />
-                  <ContentWrapper>{children}</ContentWrapper>
-                  <Map />
-                </>
-              </GridViewTypeProvider>
+              <GridViewTypeProvider>{children}</GridViewTypeProvider>
             </ViewWrapper>
           </GlobalWrapper>
         </ThemeProvider>

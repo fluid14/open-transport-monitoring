@@ -14,6 +14,8 @@ const UserMiniatureImg = styled.div`
 const UserName = styled.p`
   font-size: 1.6rem;
   margin: 0 1rem 0 0;
+  font-weight: 600;
+  color: ${({ dark }) => (dark ? '#000000' : '#ffffff')};
 `;
 
 const UserWrap = styled.div`
@@ -23,19 +25,21 @@ const UserWrap = styled.div`
   align-items: center;
 `;
 
-const UserMiniature = ({ userName }) => (
+const UserMiniature = ({ userName, dark }) => (
   <UserWrap>
-    <UserName>{userName}</UserName>
+    <UserName dark={dark}>{userName}</UserName>
     <UserMiniatureImg />
   </UserWrap>
 );
 
 UserMiniature.propTypes = {
   userName: PropTypes.string.isRequired,
+  dark: PropTypes.bool,
 };
 
 UserMiniature.defaultProp = {
   userName: 'Jan Nowak',
+  dark: false,
 };
 
 export default UserMiniature;

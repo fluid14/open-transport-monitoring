@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
-import { faGasPump } from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/fontawesome-free-regular';
 import { GridViewTypeConsumer } from 'context/GridViewTypeContext';
 
 const VehicleCardWrap = styled.div`
@@ -113,7 +113,7 @@ const StyledTD = styled.td`
   }
 `;
 
-const VehicleCard = ({ to, brand, model, fuel, locale, status, registration }) => {
+const VehicleCard = ({ to, brand, model, workTime, locale, status, registration }) => {
   const history = useHistory();
   return (
     <GridViewTypeConsumer>
@@ -127,8 +127,8 @@ const VehicleCard = ({ to, brand, model, fuel, locale, status, registration }) =
                 <Status status={status} />
                 <InfoWrap>
                   <Info>
-                    <FontAwesomeIcon icon={faGasPump} />
-                    <InfoText>{fuel}%</InfoText>
+                    <FontAwesomeIcon icon={faClock} />
+                    <InfoText>{workTime}h</InfoText>
                   </Info>
                   <Info>
                     <FontAwesomeIcon icon={faLocationArrow} />
@@ -148,10 +148,13 @@ const VehicleCard = ({ to, brand, model, fuel, locale, status, registration }) =
                 <Paragraph>{model}</Paragraph>
               </StyledTD>
               <StyledTD>
+                <Paragraph>{registration}</Paragraph>
+              </StyledTD>
+              <StyledTD>
                 <Paragraph>{locale}</Paragraph>
               </StyledTD>
               <StyledTD>
-                <Paragraph>{fuel}%</Paragraph>
+                <Paragraph>{workTime}h</Paragraph>
               </StyledTD>
               <StyledTD>
                 <Status gridType={!gridView.type} status={status} />

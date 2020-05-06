@@ -9,13 +9,14 @@ import { routes } from 'routes/routes';
 
 const SideBarMenuWrap = styled.div`
   height: 100vh;
-  width: 18.9rem;
+  width: 19rem;
   background-color: ${({ theme }) => theme.colors.purpleDark};
   box-shadow: 0.5px 0 10px black;
   padding: ${({ theme }) => theme.padding.wrap};
   transition: 0.3s ease;
   display: block;
   overflow: hidden;
+  z-index: 9;
 `;
 
 const List = styled.ul`

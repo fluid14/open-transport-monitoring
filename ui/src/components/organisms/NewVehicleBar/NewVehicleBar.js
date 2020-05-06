@@ -4,20 +4,7 @@ import styled from 'styled-components';
 import translations from 'translations/pl/newVehicleBar.json';
 import Input from 'components/atoms/Input';
 import Button from 'components/atoms/Button';
-
-const NewVehicleBarWrap = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  transform: ${({ isVisible }) => (isVisible === true ? 'translateX(0)' : 'translateX(200%)')};
-  width: 35rem;
-  height: 100vh;
-  background-color: #fff;
-  z-index: 999;
-  transition: 0.5s ease;
-  padding: 8rem 2rem;
-  box-shadow: 0px 2px 33px 0px rgba(0, 0, 0, 0.75);
-`;
+import RightBar from 'components/atoms/RightBar';
 
 const BarTitle = styled.p`
   font-size: 2.5rem;
@@ -99,7 +86,7 @@ const Arrow = styled.div`
 
 const NewVehicleBar = ({ isVisible, showBar }) => (
   <>
-    <NewVehicleBarWrap isVisible={isVisible}>
+    <RightBar fixed isVisible={isVisible}>
       <Arrow onClick={showBar}>
         <span></span>
       </Arrow>
@@ -111,7 +98,7 @@ const NewVehicleBar = ({ isVisible, showBar }) => (
         <Input placeholder={translations.device_id} type="text" />
         <SubmitButton type="submit">{translations.add}</SubmitButton>
       </Form>
-    </NewVehicleBarWrap>
+    </RightBar>
   </>
 );
 

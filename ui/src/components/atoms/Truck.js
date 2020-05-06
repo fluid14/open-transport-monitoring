@@ -1,31 +1,30 @@
-import React from 'react';
+import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
-import { keyframes } from 'styled-components';
-import truckImg from 'assets/img/truck.png';
-import translations from 'translations/pl/truck.json';
+import truckImg from 'assets/img/truck.svg';
+import Vivus from 'vivus';
 
-const appear = keyframes`
-  0%{
-    opacity: 0;
-    transform: translateY(50%);
-  }
-  
-  100%{
-    opacity: 0.99;
-    transform: translateY(0);
-  }
-`;
-
-const TruckImg = styled.img`
+const TruckImg = styled.div`
   margin-top: 2rem;
-  width: 15rem;
-  animation: ${appear} 1.3s ease-in-out;
+  width: 20rem;
 `;
 
-const Truck = ({ className }) => (
-  <TruckImg className={className} src={truckImg} alt={translations.truckAlt} />
-);
+class Truck extends Component {
+  truckRef = createRef();
+
+  componentDidMount() {
+    new Vivus(
+      this.truckRef.current,
+      { duration: 500, file: truckImg, animTimingFunction: Vivus.EASE },
+      null,
+    );
+  }
+
+  render() {
+    const { className } = this.props;
+    return <TruckImg ref={this.truckRef} className={className} />;
+  }
+}
 
 Truck.propTypes = {
   className: PropTypes.string,

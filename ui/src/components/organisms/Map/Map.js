@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 import mapPlug from 'assets/img/map.png';
 import mapInit from 'components/organisms/Map/mapInit';
@@ -57,12 +58,13 @@ const MapBox = styled.div`
   background: url(${mapPlug}) center center / cover no-repeat;
 `;
 
-class Map extends React.Component {
+class Map extends Component {
   state = {
     userPosition: {
       lat: '',
       lng: '',
     },
+    isActive: false,
   };
 
   componentDidMount() {
@@ -98,19 +100,30 @@ class Map extends React.Component {
   };
 
   render() {
+    const { className, nonBar } = this.props;
     return (
-      <>
-        <MapWrap ref={this.mapWrap}>
+      <MapWrap ref={this.mapWrap} className={className}>
+        {!nonBar && (
           <ResizeBar ref={this.resizeBar} onMouseDown={this.resize} onMouseUp={this.stopResize}>
             <ResizeBars>
               <FontAwesomeIcon icon={faGripLines} />
             </ResizeBars>
           </ResizeBar>
-          <MapBox id="map" />
-        </MapWrap>
-      </>
+        )}
+        <MapBox id="map" />
+      </MapWrap>
     );
   }
 }
+
+Map.propTypes = {
+  className: PropTypes.string,
+  nonBar: PropTypes.bool,
+};
+
+Map.defaultProps = {
+  className: '',
+  nonBar: false,
+};
 
 export default Map;

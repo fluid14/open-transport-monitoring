@@ -1,13 +1,18 @@
 const theme = {
   colors: {
-    white: '#ffffff',
-    black: '#000000',
+    white: 'rgba(255, 255, 255, 1)',
+    black: 'rgba(0, 0, 0, 1)',
     gray: 'rgba(0,0,0,0.5)',
-    purple: '#201C42',
-    purpleDark: '#272547',
+    lightGray: 'rgba(0, 0, 0, 0.4)',
+    extraLightGray: 'rgba(0, 0, 0, 0.06)',
+    purple: 'rgba(32, 28, 66, 1)',
+    purpleDark: 'rgba(39, 37, 71, 1)',
+    blue: 'rgb(41, 68, 214)',
+    red: 'rgb(248, 37, 87)',
+    orange: 'rgba(251, 197, 49, 1)',
     status: {
-      enable: '#1DDB25',
-      disable: '#D01919',
+      enable: 'rgba(29, 219, 37, 1)',
+      disable: 'rgba(208, 25, 25, 1)',
     },
   },
   padding: {
