@@ -1,21 +1,26 @@
 import unittest
-from add_vehicle_logic import add_vehicle_logic
-from DatabaseStub import DatabaseStub
-from vehicle_exceptions import VehicleNotFound
+from ..src.add_vehicle_logic import add_vehicle_logic
+from ...shared.DatabaseStub import DatabaseStub
+from ...shared.vehicle_exceptions import VehicleNotCreated
 
 
 class TestAddVehicle(unittest.TestCase):
     def setUp(self):
         self.storage_stub = DatabaseStub()
+        plate_number = "POZ997788"
+        brand = "MERCEDES"
+        model = "DAILY"
+        device_id = "ID987654"
+        self.dummy_params = (plate_number, brand, model, device_id)
 
     def test_vehicle_added_and_returned(self):
-        dummy_params = ("xxx", "zzz", "yyy")
-        result = add_vehicle_logic(dummy_params, self.storage_stub)
-        self.assertEqual(dummy_params, result)
+        self.storage_stub.state = True
+        result = add_vehicle_logic(self.dummy_params, self.storage_stub)
+        self.assertTrue(result)
 
     def test_error_raised_vehicle_not_added(self):
-        dummy_params = None
-        self.assertRaises(VehicleNotFound, add_vehicle_logic, dummy_params, self.storage_stub)
+        self.storage_stub.state = False
+        self.assertRaises(VehicleNotCreated, add_vehicle_logic, self.dummy_params, self.storage_stub)
 
 
 if __name__ == '__main__':

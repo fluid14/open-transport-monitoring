@@ -15,19 +15,19 @@ type Message {
 type Mutation {
 	createDevice(name: String!): Device!
 	publishDeviceMessage(device: String!, message: DeviceMessage!): Message
-	addVehicle(deviceID: String!,
+	addVehicle(deviceId: String!,
 		numberPlate: String!,
 		brand: String!,
 		model: String!
 	): Vehicle
 	updateVehicle(
-		vehicleID: String!,
-		deviceID: String!,
+		vehicleId: String!,
+		deviceId: String!,
 		numberPlate: String!,
 		brand: String!,
 		model: String!
 	): Vehicle
-	deleteVehicle(vehicleId: String!): Vehicle
+	deleteVehicle(vehicleId: String!): Boolean
 }
 
 type Query {

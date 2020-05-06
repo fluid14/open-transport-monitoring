@@ -1,6 +1,6 @@
 import logging
 
-from shared.vehicle_exceptions import VehiclesListEmpty
+from ...shared.vehicle_exceptions import VehiclesListEmpty
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
