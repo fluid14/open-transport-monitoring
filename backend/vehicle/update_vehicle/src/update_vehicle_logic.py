@@ -7,7 +7,7 @@ logger.setLevel(logging.INFO)
 
 
 def update_vehicle_logic(data, storage):
-    update_query = "update vehicles set NumberPlate=%s, Brand=%s, Model=%s, DeviceID=%s where VehicleID=%s"
+    update_query = "update vehicles set NumberPlate=%s, Brand=%s, Model=%s, DeviceID=%s, InspectionDate=%s, InsuranceDate=%s where VehicleID=%s"
     storage.execute(update_query, data)
     select_query = "select * from vehicles where VehicleID=%s"
     vehicle_id = data[4]

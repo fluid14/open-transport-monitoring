@@ -21,8 +21,10 @@ def add_vehicle(event, context):
     brand = event['brand']
     model = event['model']
     device_id = event['deviceId']
+    insurance_date = event['insuranceDate']
+    inspection_date = event['inspectionDate']
 
-    params = (number_plate, brand, model, device_id)
+    params = (number_plate, brand, model, device_id, insurance_date, inspection_date)
     return add_vehicle_logic(params, db_client)
 
 

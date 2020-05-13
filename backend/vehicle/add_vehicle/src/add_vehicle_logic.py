@@ -7,7 +7,7 @@ logger.setLevel(logging.INFO)
 
 
 def add_vehicle_logic(data, storage):
-    query = "insert into vehicles (NumberPlate, Brand, Model, DeviceID) values (%s, %s, %s, %s)"
+    query = "insert into vehicles (NumberPlate, Brand, Model, DeviceID, InspectionDate, InsuranceDate) values (%s, %s, %s, %s, %s, %s)"
     result = storage.execute(query, data)
     if result:
         storage.connect()

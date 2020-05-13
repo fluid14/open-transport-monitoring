@@ -21,6 +21,8 @@ def update_vehicle(event, context):
               event["brand"],
               event["model"],
               event['deviceId'],
+              event["inspectionDate"],
+              event["insuranceDate"],
               event["vehicleId"])
 
     return update_vehicle_logic(params, db_client)
