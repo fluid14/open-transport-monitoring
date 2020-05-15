@@ -1,35 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
 import GridListTemplate from '../templates/GridListTemplate';
 import AllVehiclesTemplate from 'templates/AllVehiclesTemplate';
 import VehicleCard from 'components/molecules/VehicleCard';
-import dummyData from 'data/dummyDataVehicle.json';
+import { Query } from 'react-apollo';
+import ALL_VEHICLES from 'graphql/queries/allVehicles';
+import Preloader from 'components/molecules/Preloader';
 
-class AllVehiclesView extends Component {
-  render() {
-    return (
-      <AllVehiclesTemplate>
-        <GridListTemplate>
-          <>
-            {dummyData.map(vehicle => {
-              const { id, brand, model, workTime, locale, registration, status } = vehicle;
+const AllVehiclesView = () => (
+  <AllVehiclesTemplate>
+    <GridListTemplate>
+      <Query query={ALL_VEHICLES} fetchPolicy={'network-only'}>
+        {({ loading, error, data }) => {
+          {
+            if (loading) return <Preloader loading={loading} />;
+            if (error) {
+              console.log(error.message);
+            }
+            return data.allVehicles.map(vehicle => {
+              const { VehicleID, Brand, Model, NumberPlate } = vehicle;
               return (
                 <VehicleCard
-                  key={id}
-                  to={`/vehicle/${id}`}
-                  brand={brand}
-                  model={model}
-                  locale={locale}
-                  workTime={workTime}
-                  registration={registration}
-                  status={status}
+                  key={VehicleID}
+                  to={`/vehicle/${VehicleID}`}
+                  brand={Brand}
+                  model={Model}
+                  locale="Warszawa"
+                  workTime="6.5"
+                  numberPlate={NumberPlate}
+                  status={true}
                 />
               );
-            })}
-          </>
-        </GridListTemplate>
-      </AllVehiclesTemplate>
-    );
-  }
-}
+            });
+          }
+        }}
+      </Query>
+    </GridListTemplate>
+  </AllVehiclesTemplate>
+);
 
 export default AllVehiclesView;

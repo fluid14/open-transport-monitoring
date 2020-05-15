@@ -49,36 +49,46 @@ const InputField = styled.input`
   font-size: 1.4rem;
   background-color: transparent;
   width: 100%;
-  color: ${({theme}) => theme.colors.gray};
-  
-  ::placeholder{
+  color: ${({ theme }) => theme.colors.gray};
+
+  ::placeholder {
     font-size: 0;
     color: transparent;
   }
 
-  :not(:placeholder-shown) + ${InputNameHelper}::before,
-  :focus + ${InputNameHelper}::before {
+  :not(:placeholder-shown) + ${InputNameHelper}::before, :focus + ${InputNameHelper}::before {
     transform: translateY(-105%);
     font-size: 1.2rem;
     color: ${({ theme }) => theme.colors.gray};
   }
 
-  :not(:placeholder-shown) + ${InputNameHelper}::after,
-  :focus + ${InputNameHelper}::after {
+  :not(:placeholder-shown) + ${InputNameHelper}::after, :focus + ${InputNameHelper}::after {
     width: 100%;
   }
 `;
 
-const Input = ({ placeholder, type }) => (
+const Input = ({ placeholder, type, name, onChange, onBlur, value }) => (
   <InputWrap>
-    <InputField type={type} placeholder={placeholder}/>
-    <InputNameHelper placeholder={placeholder}/>
+    <InputField
+      type={type}
+      name={name}
+      placeholder={placeholder}
+      onChange={onChange}
+      onBlur={onBlur}
+      value={value}
+      required
+    />
+    <InputNameHelper placeholder={placeholder} />
   </InputWrap>
 );
 
 Input.propTypes = {
   placeholder: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 export default Input;

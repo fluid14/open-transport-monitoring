@@ -79,7 +79,7 @@ class Map extends Component {
       })
       .then(() => {
         const { userPosition } = this.state;
-        // mapInit(userPosition);
+        mapInit(userPosition);
       })
       .catch(err => console.log(err));
   }

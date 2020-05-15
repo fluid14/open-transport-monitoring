@@ -4,8 +4,7 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem 5rem;
-  width: 14.1rem;
+  padding: 1rem 2rem;
   border: ${({ theme }) => `1px solid ${theme.colors.purple}`};
   border-radius: 15px;
   background-color: transparent;

@@ -5,6 +5,10 @@ import ContentWrap from 'components/atoms/ContentWrap';
 import TruckView from 'components/organisms/TruckView/TruckView';
 import Map from 'components/organisms/Map/Map';
 import ChangeView from 'components/atoms/ChangeView';
+import SINGLE_VEHICLE from 'graphql/queries/singleVehicle';
+import { Query } from 'react-apollo';
+import Preloader from 'components/molecules/Preloader';
+import translations from 'translations/pl/singleVehicle.json';
 
 const StyledContentWrap = styled(ContentWrap)`
   width: 100%;
@@ -36,7 +40,14 @@ const StyledMap = styled(Map)`
 class VehicleView extends Component {
   state = {
     showMap: true,
+    vehicleId: '',
   };
+
+  componentDidMount() {
+    this.setState({
+      vehicleId: this.props.match.params.id,
+    });
+  }
 
   changeView = () => {
     this.setState(prevState => ({
@@ -45,22 +56,40 @@ class VehicleView extends Component {
   };
 
   render() {
-    const { showMap } = this.state;
+    const { showMap, vehicleId } = this.state;
     return (
       <>
         <StyledContentWrap showMap={showMap}>
-          <VehicleMapWrap>
-            <ChangeView onClick={this.changeView} showMap={showMap}>
-              {!showMap && <p>Mapa</p>}
-              {showMap && <p>Pojazd</p>}
-            </ChangeView>
-            {!showMap && <TruckView />}
-            <StyledMap nonBar showMap={showMap} />
-          </VehicleMapWrap>
-          <StatsBar />
+          <Query query={SINGLE_VEHICLE} variables={{ vehicleId }}>
+            {({ loading, error, data }) => {
+              {
+                if (loading) return <Preloader loading={loading} />;
+                if (error) {
+                  console.log(error.message);
+                }
+                if (data) {
+                  const { Brand, Model, NumberPlate } = data.singleVehicle;
+                  return (
+                    <>
+                      <VehicleMapWrap>
+                        <ChangeView onClick={this.changeView} showMap={showMap}>
+                          {!showMap && <p>{translations.map}</p>}
+                          {showMap && <p>{translations.vehicle}</p>}
+                        </ChangeView>
+                        <TruckView brand={Brand} model={Model} plateNumber={NumberPlate} />
+                        <StyledMap nonBar showMap={showMap} />
+                      </VehicleMapWrap>
+                      <StatsBar vehicleId={vehicleId} data={data} />
+                    </>
+                  );
+                }
+              }
+            }}
+          </Query>
         </StyledContentWrap>
       </>
     );
   }
 }
+
 export default VehicleView;

@@ -23,10 +23,7 @@ const GlobalStyle = createGlobalStyle`
       font-size: 71%;
     }
     @media screen and (min-width: 1680px){
-      font-size: 80%;
-    }
-    @media screen and (min-width: 1920px){
-      font-size: 93%;
+      font-size: 77%;
     }
   }
     

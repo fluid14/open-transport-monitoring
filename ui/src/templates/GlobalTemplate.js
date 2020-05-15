@@ -6,6 +6,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import SideBarMenu from 'components/organisms/SideBarMenu/SideBarMenu';
 import NewVehicleBar from 'components/organisms/NewVehicleBar/NewVehicleBar';
 import { GridViewTypeProvider } from 'context/GridViewTypeContext';
+import NewVehicleForm from 'components/molecules/NewVehicleForm';
 
 const GlobalWrapper = styled.div`
   display: flex;
@@ -47,7 +48,11 @@ class GlobalTemplate extends Component {
               showNewVehicleBar={this.showNewVehicleBar}
               isNewVehicleBarActive={isNewVehicleBarVisible}
             />
-            <NewVehicleBar isVisible={isNewVehicleBarVisible} showBar={this.showNewVehicleBar} />
+            <NewVehicleBar
+              isVisible={isNewVehicleBarVisible}
+              showBar={this.showNewVehicleBar}
+              form={NewVehicleForm}
+            />
             <ViewWrapper>
               <GridViewTypeProvider>{children}</GridViewTypeProvider>
             </ViewWrapper>

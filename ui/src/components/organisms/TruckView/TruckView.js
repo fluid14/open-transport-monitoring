@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 import VehicleName from 'components/atoms/VehicleName';
 import VehicleStatsCircle from 'components/atoms/VehicleStatsCircle';
@@ -27,10 +28,10 @@ const GridBox = styled.div`
   grid-row: ${({ row }) => row};
 `;
 
-const TruckView = () => (
+const TruckView = ({ model, brand, plateNumber }) => (
   <VehicleWrap>
     <GridBox column="1/20" row="1/2">
-      <VehicleName model="F-Max" brand="Ford" plateNumber="PZ102KS" status />
+      <VehicleName model={model} brand={brand} plateNumber={plateNumber} status />
     </GridBox>
     <GridBox column="2/6" row="8/11">
       <VehicleStatsCircle
@@ -108,5 +109,11 @@ const TruckView = () => (
     </GridBox>
   </VehicleWrap>
 );
+
+TruckView.propTypes = {
+  model: PropTypes.string.isRequired,
+  brand: PropTypes.string.isRequired,
+  plateNumber: PropTypes.string.isRequired,
+};
 
 export default TruckView;

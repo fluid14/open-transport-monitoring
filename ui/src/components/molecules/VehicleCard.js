@@ -6,6 +6,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/fontawesome-free-regular';
 import { GridViewTypeConsumer } from 'context/GridViewTypeContext';
+import { keyframes } from 'styled-components';
+
+const CardAppear = keyframes`
+  from{
+    transform: translateY(10%);
+    opacity: 0
+  }
+  
+  to{
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+`;
 
 const VehicleCardWrap = styled.div`
   position: relative;
@@ -16,6 +30,8 @@ const VehicleCardWrap = styled.div`
   padding: 1.8rem 2.9rem;
   transition: transform 0.3s ease;
   color: ${({ theme }) => theme.colors.black};
+  animation: 0.8s ease ${CardAppear};
+
   &:hover {
     transform: translateY(-3%);
   }
@@ -113,7 +129,7 @@ const StyledTD = styled.td`
   }
 `;
 
-const VehicleCard = ({ to, brand, model, workTime, locale, status, registration }) => {
+const VehicleCard = ({ to, brand, model, workTime, locale, status, numberPlate }) => {
   const history = useHistory();
   return (
     <GridViewTypeConsumer>
@@ -135,7 +151,7 @@ const VehicleCard = ({ to, brand, model, workTime, locale, status, registration 
                     <InfoText>{locale}</InfoText>
                   </Info>
                 </InfoWrap>
-                <Registration>{registration}</Registration>
+                <Registration>{numberPlate}</Registration>
               </VehicleCardWrap>
             </Link>
           )}
@@ -148,7 +164,7 @@ const VehicleCard = ({ to, brand, model, workTime, locale, status, registration 
                 <Paragraph>{model}</Paragraph>
               </StyledTD>
               <StyledTD>
-                <Paragraph>{registration}</Paragraph>
+                <Paragraph>{numberPlate}</Paragraph>
               </StyledTD>
               <StyledTD>
                 <Paragraph>{locale}</Paragraph>
@@ -170,10 +186,9 @@ const VehicleCard = ({ to, brand, model, workTime, locale, status, registration 
 VehicleCard.propTypes = {
   brand: PropTypes.string.isRequired,
   model: PropTypes.string.isRequired,
-  fuel: PropTypes.number.isRequired,
   locale: PropTypes.string.isRequired,
   status: PropTypes.bool,
-  registration: PropTypes.string.isRequired,
+  numberPlate: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
 };
 

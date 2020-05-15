@@ -1,8 +1,10 @@
 {
   "barTitle": "Dodaj nowy pojazd",
-  "mark": "Marka",
+  "brand": "Marka",
   "model": "Model",
-  "registration_number": "Nr. rejestracyjny",
-  "device_id": "ID urządzenia",
-  "add": "Dodaj"
+  "plateNumber": "Nr. rejestracyjny",
+  "device_id": "Urządzenie",
+  "add": "Dodaj",
+  "insuranceDate": "Data ubezpieczenia",
+  "inspectionDate": "Data przeglądu"
 }

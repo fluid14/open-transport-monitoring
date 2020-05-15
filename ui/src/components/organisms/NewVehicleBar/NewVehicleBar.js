@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import translations from 'translations/pl/newVehicleBar.json';
-import Input from 'components/atoms/Input';
 import Button from 'components/atoms/Button';
 import RightBar from 'components/atoms/RightBar';
+import NewVehicleForm from 'components/molecules/NewVehicleForm';
 
 const BarTitle = styled.p`
   font-size: 2.5rem;
@@ -12,16 +12,6 @@ const BarTitle = styled.p`
   text-align: center;
   font-weight: ${({ theme }) => theme.fonts.bold};
   color: ${({ theme }) => theme.colors.purple};
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  width: 70%;
-  height: 100%;
 `;
 
 const SubmitButton = styled(Button)`
@@ -91,13 +81,7 @@ const NewVehicleBar = ({ isVisible, showBar }) => (
         <span></span>
       </Arrow>
       <BarTitle>{translations.barTitle}</BarTitle>
-      <Form>
-        <Input placeholder={translations.mark} type="text" />
-        <Input placeholder={translations.model} type="text" />
-        <Input placeholder={translations.registration_number} type="text" />
-        <Input placeholder={translations.device_id} type="text" />
-        <SubmitButton type="submit">{translations.add}</SubmitButton>
-      </Form>
+      <NewVehicleForm />
     </RightBar>
   </>
 );

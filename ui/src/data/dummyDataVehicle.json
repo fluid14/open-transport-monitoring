@@ -14,7 +14,7 @@
     "model": "Actros",
     "workTime": 3,
     "locale": "Poznań",
-    "registration": "PZ543245",
+    "registration": "WZ938F8",
     "status": false
   },
   {
@@ -23,7 +23,7 @@
     "model": "Amber",
     "workTime": 7,
     "locale": "Wrocław",
-    "registration": "PZ543245",
+    "registration": "KT50FE9",
     "status": true
   },
   {
@@ -32,7 +32,7 @@
     "model": "Freightliner",
     "workTime": 8,
     "locale": "Katowice",
-    "registration": "PZ543245",
+    "registration": "PO0W987",
     "status": false
   },
   {
@@ -50,7 +50,7 @@
     "model": "F-Max",
     "workTime": 4,
     "locale": "Berlin",
-    "registration": "PZ543245",
+    "registration": "GD76K9Y",
     "status": true
   },
   {
@@ -59,7 +59,7 @@
     "model": "Actros",
     "workTime": 6,
     "locale": "Paryż",
-    "registration": "PZ543245",
+    "registration": "DW7NV78",
     "status": false
   },
   {
@@ -68,7 +68,7 @@
     "model": "Globetrotter Xl",
     "workTime": 1,
     "locale": "Antoninek",
-    "registration": "PZ543245",
+    "registration": "CB57GJY",
     "status": true
   },
   {
@@ -77,7 +77,7 @@
     "model": "Stralis",
     "workTime": 0.45,
     "locale": "Swarzędz",
-    "registration": "PZ543245",
+    "registration": "DJ825HF",
     "status": false
   },
   {
@@ -86,7 +86,7 @@
     "model": "F-Max",
     "workTime": 3,
     "locale": "Gruszczyn",
-    "registration": "PZ543245",
+    "registration": "KO28DGY",
     "status": false
   }
 
