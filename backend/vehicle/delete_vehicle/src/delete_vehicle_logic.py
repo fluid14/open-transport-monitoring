@@ -1,13 +1,13 @@
 import logging
 
-from ...shared.vehicle_exceptions import VehicleNotFound
+from shared.vehicle_exceptions import VehicleNotFound
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 
 def delete_vehicle_logic(data, storage):
-    query = "delete from vehicles where VehicleID=%s"
+    query = "delete from vehicles where vehicleId=%s"
     params = (data,)
     result = storage.execute(query, params)
     logger.info(result)

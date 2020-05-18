@@ -57,6 +57,12 @@ custom:
         config:
           lambdaFunctionArn:
             Fn::ImportValue: vehicle-${self:provider.stage}-updateVehicle
+      - type: AWS_LAMBDA
+        name: getVehicleParameterLimits
+        description: 'Get vehicle parameter limits'
+        config:
+          lambdaFunctionArn:
+            Fn::ImportValue: vehicle-${self:provider.stage}-getVehicleParameterLimits
     mappingTemplates:
       - dataSource: allDevices
         type: Query
@@ -76,6 +82,11 @@ custom:
       - dataSource: getVehicle
         type: Query
         field: singleVehicle
+        request: standard.request.vtl
+        response: standard.response.vtl
+      - dataSource: getVehicleParameterLimits
+        type: Query
+        field: vehicleParameterLimits
         request: standard.request.vtl
         response: standard.response.vtl
       - dataSource: getAllVehicles

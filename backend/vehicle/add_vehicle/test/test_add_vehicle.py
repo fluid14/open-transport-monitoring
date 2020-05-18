@@ -14,7 +14,7 @@ class TestAddVehicle(unittest.TestCase):
         self.dummy_params = (plate_number, brand, model, device_id)
 
     def test_vehicle_added_and_returned(self):
-        self.storage_stub.state = True
+        self.storage_stub.state = (True,)
         result = add_vehicle_logic(self.dummy_params, self.storage_stub)
         self.assertTrue(result)
 

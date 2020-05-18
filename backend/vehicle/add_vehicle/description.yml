@@ -8,3 +8,4 @@ addVehicle:
     include:
       - add_vehicle/src/*.py
       - shared/vehicle_exceptions.py
+      - shared/date_to_string_parser.py

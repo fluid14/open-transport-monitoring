@@ -39,6 +39,7 @@ type Query {
 	allDevices: [Device]!
 	allVehicles: [Vehicle]
 	singleVehicle(vehicleId: String!): Vehicle
+	vehicleParameterLimits: [ParameterLimit]
 }
 
 type Subscription {
@@ -53,11 +54,18 @@ schema {
 }
 
 type Vehicle {
-	VehicleID: String!
-	DeviceID: String!
-	NumberPlate: String!
-	Brand: String!
-	Model: String!
-	InsuranceDate: String!
-	InspectionDate: String!
+	vehicleId: String!
+	deviceId: String!
+	numberPlate: String!
+	brand: String!
+	model: String!
+	insuranceDate: String!
+	inspectionDate: String!
+}
+
+type ParameterLimit {
+	name: String!,
+	min: Int!,
+	max: Int!,
+	unit: String!
 }

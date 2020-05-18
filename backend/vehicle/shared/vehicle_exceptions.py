@@ -8,3 +8,7 @@ class VehicleNotCreated(Exception):
 
 class VehiclesListEmpty(Exception):
     pass
+
+
+class VehicleParameterLimitsNotFound(Exception):
+    pass
