@@ -2,7 +2,7 @@ getVehicleParameterLimits:
   handler: get_vehicle_parameter_limits/src/handler.get_vehicle_parameter_limits
   layers:
     - Fn::ImportValue:
-        SqlLambdaLayer
+        SqlLambdaLayer-${self:provider.stage}
   environment: ${file(db_credentials.yml)}
   package:
     include:
