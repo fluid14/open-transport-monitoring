@@ -31,6 +31,10 @@ const StatsWrap = styled.div`
   width: 7rem;
   text-align: center;
   animation: 1s 0.5s ease ${statsAppear} backwards;
+
+  @media screen and (min-width: 1600px) {
+    width: 8.5rem;
+  }
 `;
 
 const Title = styled.p`
@@ -40,6 +44,11 @@ const Title = styled.p`
   color: ${({ theme }) => theme.colors.white};
   text-transform: uppercase;
   letter-spacing: 2px;
+  @media screen and (min-width: 1600px) {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-top: 1rem;
+  }
 `;
 
 const circularStyles = {

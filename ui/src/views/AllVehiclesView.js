@@ -17,16 +17,16 @@ const AllVehiclesView = () => (
               console.log(error.message);
             }
             return data.allVehicles.map(vehicle => {
-              const { VehicleID, Brand, Model, NumberPlate } = vehicle;
+              const { vehicleId, brand, model, numberPlate } = vehicle;
               return (
                 <VehicleCard
-                  key={VehicleID}
-                  to={`/vehicle/${VehicleID}`}
-                  brand={Brand}
-                  model={Model}
+                  key={vehicleId}
+                  to={`/vehicle/${vehicleId}`}
+                  brand={brand}
+                  model={model}
                   locale="Warszawa"
                   workTime="6.5"
-                  numberPlate={NumberPlate}
+                  numberPlate={numberPlate}
                   status={true}
                 />
               );

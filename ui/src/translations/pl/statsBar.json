@@ -10,5 +10,6 @@
   "carReviewDate": "Przegląd",
   "insurance": "Ubezpieczenie",
   "errors": "Błędy",
-  "areYouShure": "Czy na pewno chcesz usunąć pojazd ?"
+  "areYouShure": "Czy na pewno chcesz usunąć pojazd ?",
+  "editVehicleBarTitle": "Edytuj pojazd"
 }

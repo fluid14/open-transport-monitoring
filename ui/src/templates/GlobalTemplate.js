@@ -6,7 +6,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import SideBarMenu from 'components/organisms/SideBarMenu/SideBarMenu';
 import NewVehicleBar from 'components/organisms/NewVehicleBar/NewVehicleBar';
 import { GridViewTypeProvider } from 'context/GridViewTypeContext';
-import NewVehicleForm from 'components/molecules/NewVehicleForm';
+import VehicleForm from 'components/molecules/VehicleForm';
 
 const GlobalWrapper = styled.div`
   display: flex;
@@ -29,14 +29,14 @@ class GlobalTemplate extends Component {
     isNewVehicleBarVisible: false,
   };
 
-  showNewVehicleBar = () => {
+  toggleNewVehicleBar = () => {
     this.setState(prevState => ({
       isNewVehicleBarVisible: !prevState.isNewVehicleBarVisible,
     }));
   };
 
   render() {
-    const { children, user } = this.props;
+    const { children } = this.props;
     const { isNewVehicleBarVisible } = this.state;
 
     return (
@@ -45,13 +45,13 @@ class GlobalTemplate extends Component {
           <GlobalStyle />
           <GlobalWrapper>
             <SideBarMenu
-              showNewVehicleBar={this.showNewVehicleBar}
+              toggleBar={this.toggleNewVehicleBar}
               isNewVehicleBarActive={isNewVehicleBarVisible}
             />
             <NewVehicleBar
               isVisible={isNewVehicleBarVisible}
-              showBar={this.showNewVehicleBar}
-              form={NewVehicleForm}
+              toggleBar={this.toggleNewVehicleBar}
+              form={VehicleForm}
             />
             <ViewWrapper>
               <GridViewTypeProvider>{children}</GridViewTypeProvider>

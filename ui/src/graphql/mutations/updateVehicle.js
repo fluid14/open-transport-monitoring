@@ -1,7 +1,8 @@
 import gql from 'graphql-tag';
 
-const ADD_VEHICLE = gql`
-  mutation addVehicle(
+const UPDATE_VEHICLE = gql`
+  mutation updateVehicle(
+    $vehicleId: String!
     $deviceId: String!
     $plateNumber: String!
     $brand: String!
@@ -9,7 +10,8 @@ const ADD_VEHICLE = gql`
     $insuranceDate: String!
     $inspectionDate: String!
   ) {
-    addVehicle(
+    updateVehicle(
+      vehicleId: $vehicleId
       deviceId: $deviceId
       numberPlate: $plateNumber
       brand: $brand
@@ -22,4 +24,4 @@ const ADD_VEHICLE = gql`
   }
 `;
 
-export default ADD_VEHICLE;
+export default UPDATE_VEHICLE;

@@ -8,9 +8,13 @@ import ChangeView from 'components/atoms/ChangeView';
 import VehicleErrors from 'components/molecules/VehicleErrors';
 import VehicleSpecification from 'components/molecules/VehicleSpecification';
 import VehicleSettings from 'components/molecules/VehicleSettings';
+import VehicleForm from 'components/molecules/VehicleForm';
+import BarTitle from 'components/atoms/BarTitle';
+import ExitArrow from 'components/atoms/ExitArrow';
 
 const Wrap = styled.div`
   position: relative;
+  height: 92%;
 `;
 
 const StyledRightBar = styled(RightBar)`
@@ -34,9 +38,13 @@ const StyledChangeView = styled(ChangeView)`
 `;
 
 const EditVehicle = styled.div`
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.white};
   height: 100%;
   z-index: 3;
+  form {
+    width: 85%;
+  }
 `;
 
 class StatsBar extends Component {
@@ -51,7 +59,7 @@ class StatsBar extends Component {
     }));
   };
 
-  editVehicleShow = () => {
+  toggleEditVehicle = () => {
     this.setState(prevState => ({
       editVehicleActive: !prevState.editVehicleActive,
     }));
@@ -59,10 +67,13 @@ class StatsBar extends Component {
 
   render() {
     const { errorActive, editVehicleActive } = this.state;
-    const { vehicleId, data } = this.props;
-    console.log(data);
+    const {
+      vehicleId,
+      data: { singleVehicle },
+    } = this.props;
     return (
       <StyledRightBar statsBar isVisible={true}>
+        {editVehicleActive && <ExitArrow onClick={this.toggleEditVehicle} cross />}
         <TopBar userName="Jan Nowak" noSwitch vehicle />
         <Wrap>
           {!editVehicleActive && (
@@ -74,7 +85,7 @@ class StatsBar extends Component {
           {!errorActive && !editVehicleActive && (
             <>
               <Title>{translations.spec}</Title>
-              <VehicleSpecification />
+              <VehicleSpecification data={singleVehicle} />
             </>
           )}
           {errorActive && !editVehicleActive && (
@@ -83,12 +94,15 @@ class StatsBar extends Component {
               <VehicleErrors />
             </>
           )}
-          {editVehicleActive && (
-            <EditVehicle>
-              <p>test</p>
-            </EditVehicle>
+          {editVehicleActive && singleVehicle && (
+            <>
+              <BarTitle>{translations.editVehicleBarTitle}</BarTitle>
+              <EditVehicle>
+                <VehicleForm data={singleVehicle} type="update" />
+              </EditVehicle>
+            </>
           )}
-          <VehicleSettings vehicleId={vehicleId} editVehicle={this.editVehicleShow} />
+          <VehicleSettings vehicleId={vehicleId} editVehicle={this.toggleEditVehicle} />
         </Wrap>
       </StyledRightBar>
     );

@@ -81,7 +81,7 @@ const LogOutBtn = styled.a`
   cursor: pointer;
 `;
 
-const SideBarMenu = ({ showNewVehicleBar, isNewVehicleBarActive }) => (
+const SideBarMenu = ({ toggleBar, isNewVehicleBarActive }) => (
   <SideBarMenuWrap>
     <Logo />
     <List>
@@ -91,7 +91,7 @@ const SideBarMenu = ({ showNewVehicleBar, isNewVehicleBarActive }) => (
         </MenuLink>
       </ListItem>
       <ListItem>
-        <MenuLink onClick={() => showNewVehicleBar()} isNewVehicleBarActive={isNewVehicleBarActive}>
+        <MenuLink onClick={() => toggleBar()} isNewVehicleBarActive={isNewVehicleBarActive}>
           {translations.add_vehicle}
         </MenuLink>
       </ListItem>
@@ -101,7 +101,7 @@ const SideBarMenu = ({ showNewVehicleBar, isNewVehicleBarActive }) => (
 );
 
 SideBarMenu.propTypes = {
-  showNewVehicleBar: PropTypes.func.isRequired,
+  toggleBar: PropTypes.func.isRequired,
   isNewVehicleBarActive: PropTypes.bool.isRequired,
 };
 

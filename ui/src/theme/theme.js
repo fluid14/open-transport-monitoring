@@ -5,6 +5,8 @@ const theme = {
     gray: 'rgba(0,0,0,0.5)',
     lightGray: 'rgba(0, 0, 0, 0.4)',
     extraLightGray: 'rgba(0, 0, 0, 0.06)',
+    gray2: 'rgba(250, 250, 250, 1)',
+    gray3: 'rgba(102, 102, 102, 1)',
     purple: 'rgba(32, 28, 66, 1)',
     purpleDark: 'rgba(39, 37, 71, 1)',
     blue: 'rgb(41, 68, 214)',

@@ -29,25 +29,23 @@ const Settings = styled.div`
   transition: 0.2s ease;
 `;
 
-// ${({ isVisible }) =>
-//   isVisible &&
-//   `
-//   opacity: 1
-// `}
+const SettingsBtn = styled.button`
+  border: none;
 
-const SettingsBtn = styled(FontAwesomeIcon)`
+  &:hover,
+  &:focus {
+    outline: none;
+    opacity: 0.6;
+  }
+  &:focus ~ ${Settings} {
+    opacity: 1;
+  }
+`;
+const SettingsIcon = styled(FontAwesomeIcon)`
   font-size: 2rem;
   color: ${({ theme }) => theme.colors.black};
   cursor: pointer;
   transition: 0.3s ease;
-
-  &:hover {
-    opacity: 0.6;
-  }
-
-  &:focus ~ ${Settings} {
-    opacity: 1;
-  }
 `;
 
 const SettingsOption = styled.p`
@@ -64,14 +62,7 @@ const SettingsOption = styled.p`
 
 class VehicleSettings extends Component {
   state = {
-    isVisible: false,
     deleteIsVisible: false,
-  };
-
-  toggleSettings = () => {
-    this.setState(prevState => ({
-      isVisible: !prevState.isVisible,
-    }));
   };
 
   toggleDeletePopUp = () => {
@@ -95,12 +86,14 @@ class VehicleSettings extends Component {
   };
 
   render() {
-    const { isVisible, deleteIsVisible } = this.state;
+    const { deleteIsVisible } = this.state;
     const { vehicleId, editVehicle } = this.props;
     return (
       <SettingsWrap>
-        <SettingsBtn icon={faCog} onClick={this.toggleSettings} />
-        <Settings isVisible={isVisible}>
+        <SettingsBtn>
+          <SettingsIcon icon={faCog} onClick={this.toggleSettings} />
+        </SettingsBtn>
+        <Settings>
           <SettingsOption onClick={editVehicle}>Edytuj</SettingsOption>
           <SettingsOption onClick={this.toggleDeletePopUp}>Usuń</SettingsOption>
         </Settings>

@@ -1,0 +1,34 @@
+{
+  "weekDaysShort": [
+    "Ndz",
+    "Pn",
+    "Wt",
+    "Śr",
+    "Czw",
+    "Pt",
+    "Sb"
+  ],
+  "months": [
+    "Styczeń",
+    "Luty",
+    "Marzec",
+    "Kwiecień",
+    "Maj",
+    "Czerwiec",
+    "Lipiec",
+    "Sierpień",
+    "Wrzesień",
+    "Październik",
+    "Listopad",
+    "Grudzień"
+  ],
+  "weekDaysLong": [
+    "Niedziela",
+    "Poniedziałek",
+    "Wtorek",
+    "Środa",
+    "Czwartek",
+    "Piątek",
+    "Sobota"
+  ]
+}

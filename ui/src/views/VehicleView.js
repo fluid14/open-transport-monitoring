@@ -68,7 +68,7 @@ class VehicleView extends Component {
                   console.log(error.message);
                 }
                 if (data) {
-                  const { Brand, Model, NumberPlate } = data.singleVehicle;
+                  const { brand, model, numberPlate } = data.singleVehicle;
                   return (
                     <>
                       <VehicleMapWrap>
@@ -76,7 +76,7 @@ class VehicleView extends Component {
                           {!showMap && <p>{translations.map}</p>}
                           {showMap && <p>{translations.vehicle}</p>}
                         </ChangeView>
-                        <TruckView brand={Brand} model={Model} plateNumber={NumberPlate} />
+                        <TruckView brand={brand} model={model} plateNumber={numberPlate} />
                         <StyledMap nonBar showMap={showMap} />
                       </VehicleMapWrap>
                       <StatsBar vehicleId={vehicleId} data={data} />

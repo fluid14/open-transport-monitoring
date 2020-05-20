@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StatsWrap = styled.div`
@@ -11,7 +12,7 @@ const StatsWrap = styled.div`
   margin-top: 2rem;
 `;
 
-const Title = styled.p`
+const Title = styled.h3`
   font-size: 1.2rem;
   text-transform: uppercase;
   font-weight: 400;
@@ -23,11 +24,21 @@ const Info = styled.p`
   font-weight: 300;
 `;
 
-const VehicleStatsBlock = ({ children, title }) => (
-  <StatsWrap>
+const VehicleStatsBlock = ({ children, className, title }) => (
+  <StatsWrap className={className}>
     <Title>{title}</Title>
     <Info>{children}</Info>
   </StatsWrap>
 );
+
+VehicleStatsBlock.propTypes = {
+  children: PropTypes.element.isRequired,
+  className: PropTypes.string,
+  title: PropTypes.string.isRequired,
+};
+
+VehicleStatsBlock.defaultType = {
+  className: '',
+};
 
 export default VehicleStatsBlock;
