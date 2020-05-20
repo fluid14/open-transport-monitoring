@@ -8,8 +8,6 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: eu-west-2
 
-custom:
-
 plugins:
   - serverless-iam-roles-per-function
 

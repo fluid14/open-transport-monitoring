@@ -1,9 +1,10 @@
-import CertificatesRepository from './certificates/CertificatesRepository';
 import IotHub from './device/IotHub';
+import GraphqlClient from './graphql/GraphqlClient';
+import CertificatesRepository from './certificates/CertificatesRepository';
 import CertificatesService from './certificates/CertificatesService';
 import DeviceService from './device/DeviceService';
-import Simulation from './simulator/Simulation';
 import DeviceMessage from './device/DeviceMessage';
+import Simulation from './simulator/Simulation';
 
 class App {
 
@@ -17,8 +18,9 @@ class App {
     const deviceName = this.getDeviceNameFromParams();
     const certificatesRepository = new CertificatesRepository(deviceName);
     const certificatesService = new CertificatesService(certificatesRepository);
+    const graphql = new GraphqlClient();
     const iotHub = new IotHub();
-    const deviceService = new DeviceService(iotHub, certificatesService);
+    const deviceService = new DeviceService(iotHub, graphql, certificatesService);
     const simulation = new Simulation();
 
     console.log('Starting device...');
@@ -28,7 +30,7 @@ class App {
       const device = await deviceService.getDevice(deviceName);
 
       simulation.start(async (message: DeviceMessage) => {
-        await device.publish('iot/device', JSON.stringify(message))
+        await device.publish('iot/device', JSON.stringify({ deviceName, ...message }))
       });
 
     } catch(ex) {

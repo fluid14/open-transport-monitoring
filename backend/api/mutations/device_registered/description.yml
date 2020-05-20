@@ -1,0 +1,19 @@
+deviceRegistered:
+  handler: mutations/device_registered/src/handler.device_registered
+  layers:
+    - Fn::ImportValue:
+        HttpLambdaLayer-${self:provider.stage}
+    - Fn::ImportValue:
+        QueueLambdaLayer-${self:provider.stage}
+  events:
+    - sns:
+        arn:
+          Fn::ImportValue: device-${self:provider.stage}-registrationFinishedTopic
+        topicName: iot_device_registration_finished_${self:provider.stage}
+  environment:
+    API_URL: !GetAtt GraphQlApi.GraphQLUrl
+    API_KEY: !GetAtt GraphQlApiKeyDefault.ApiKey
+  package:
+    include:
+      - mutations/device_registered/src/*.py
+

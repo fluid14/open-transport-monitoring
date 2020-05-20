@@ -36,6 +36,5 @@ class Device:
             # Try to fetch thing description to check if has been registered
             self.iot_client.describe_thing(thingName=device_name)
             return True
-        except ClientError as e:
-            logger.log(e)
+        except ClientError:
             return False

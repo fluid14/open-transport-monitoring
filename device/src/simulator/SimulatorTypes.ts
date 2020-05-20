@@ -1,14 +1,14 @@
 enum SimulatorTypes {
   SPEED = 'speed',
   RPM = 'rpm',
-  OIL_TEMPERATURE = 'oil_temperature',
-  OIL_PRESSURE = 'oil_pressure',
-  FUEL_LEVEL = 'fuel_level',
-  FUEL_CONSUMPTION = 'fuel_consumption',
-  FUEL_RANGE = 'fuel_range',
-  TYRES_PRESSURE = 'tyres_pressure',
+  OIL_TEMPERATURE = 'oilTemperature',
+  OIL_PRESSURE = 'oilPressure',
+  FUEL_LEVEL = 'fuelLevel',
+  FUEL_CONSUMPTION = 'fuelConsumption',
+  FUEL_RANGE = 'fuelRange',
+  TYRES_PRESSURE = 'tyresPressure',
   MILEAGE = 'mileage',
-  RIDE_TIME = 'ride_time',
+  RIDE_TIME = 'rideTime',
   POSITION = 'position',
   ERRORS = 'errors'
 }

@@ -1,0 +1,15 @@
+deviceMessage:
+  handler: mutations/device_message/src/handler.device_message
+  layers:
+    - Fn::ImportValue:
+        HttpLambdaLayer-${self:provider.stage}
+  events:
+    - iot:
+        sql: "SELECT * from 'iot/device'"
+  environment:
+    API_URL: !GetAtt GraphQlApi.GraphQLUrl
+    API_KEY: !GetAtt GraphQlApiKeyDefault.ApiKey
+  package:
+    include:
+      - mutations/device_message/src/*.py
+

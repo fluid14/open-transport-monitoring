@@ -5,3 +5,12 @@ Outputs:
       RegisterIotDeviceLambdaFunctionQualifiedArn:
         Export:
           Name: device-${self:provider.stage}-registerIotDevice
+      GetDeviceCertificatesLambdaFunctionQualifiedArn:
+        Export:
+          Name: device-${self:provider.stage}-getDeviceCertificates
+      DeviceRegistrationFinishedTopic:
+        Value: !Ref deviceRegistrationFinishedTopic
+        Export:
+          Name: device-${self:provider.stage}-registrationFinishedTopic
+      CertificatesStorageBucketName:
+        Value: !Ref iotCertificatesStorage

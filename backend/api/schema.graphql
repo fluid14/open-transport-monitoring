@@ -1,22 +1,10 @@
-type Device {
-	name: String!
-	arn: String!
-}
-
-input DeviceMessage {
-	test_data: Int!
-}
-
-type Message {
-	device: String
-	test_data: Int
-}
-
 type Mutation {
+	# Device
 	createDevice(name: String!): Device!
-	publishDeviceMessage(device: String!, message: DeviceMessage!): Message
-	addVehicle(
-		deviceId: String!,
+	registerDevice(name: String!): DeviceRegistered
+	passDeviceMessage(message: DeviceOutput!): DeviceMessage
+	# Vehicle
+	addVehicle(deviceId: String!,
 		numberPlate: String!,
 		brand: String!,
 		model: String!,
@@ -37,20 +25,33 @@ type Mutation {
 
 type Query {
 	allDevices: [Device]!
+	deviceCertificates(deviceName: String!): [String]
 	allVehicles: [Vehicle]
 	singleVehicle(vehicleId: String!): Vehicle
 	vehicleParameterLimits: [ParameterLimit]
 }
 
 type Subscription {
-	publishedDeviceMessage(device: String): Message
-		@aws_subscribe(mutations: ["publishDeviceMessage"])
+	registeredDevice(name: String): DeviceRegistered
+		@aws_subscribe(mutations: ["registerDevice"])
+	deviceMessage(deviceName: String!): DeviceMessage
+		@aws_subscribe(mutations: ["passDeviceMessage"])
 }
 
 schema {
 	query: Query
 	mutation: Mutation
 	subscription: Subscription
+}
+
+type Device {
+	name: String!
+	arn: String!
+}
+
+type DeviceRegistered {
+	name: String!
+	registered: Boolean!
 }
 
 type Vehicle {
@@ -68,4 +69,54 @@ type ParameterLimit {
 	min: Int!,
 	max: Int!,
 	unit: String!
+}
+
+type VehicleErrors {
+	engine: Boolean
+  oilLevel: Boolean
+  coolantTemperature: Boolean
+  battery: Boolean
+  abs: Boolean
+  powerSteering: Boolean
+}
+
+type DeviceMessage {
+	deviceName: String!
+	speed: Int
+	rpm: Int
+	oilTemperature: Float
+	oilPressure: Float
+	fuelLevel: Float
+	fuelConsumption: Float
+	fuelRange: Float
+	tyresPressure: [Float]
+	mileage: Float
+	rideTime: Float
+	position: [Float]
+	errors: VehicleErrors
+}
+
+input DeviceOutput {
+	deviceName: String!
+	speed: Int
+	rpm: Int
+	oilTemperature: Float
+	oilPressure: Float
+	fuelLevel: Float
+	fuelConsumption: Float
+	fuelRange: Float
+	tyresPressure: [Float]
+	mileage: Float
+	rideTime: Float
+	position: [Float]
+	errors: VehicleErrorsOutput
+}
+
+input VehicleErrorsOutput {
+	engine: Boolean
+	oilLevel: Boolean
+	coolantTemperature: Boolean
+	battery: Boolean
+	abs: Boolean
+	powerSteering: Boolean
 }

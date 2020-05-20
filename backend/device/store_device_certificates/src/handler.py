@@ -9,6 +9,7 @@ from store_device_certificates_errors import StorageFailed
 
 # Environment variables
 bucket_name = os.environ['IOT_DEVICES_CERTS_BUCKET']
+flow_finished_topic = os.environ['IOT_DEVICE_REGISTRATION_FINISHED_TOPIC']
 
 # AWS services clients
 s3_client = boto3.client('s3')
@@ -34,6 +35,14 @@ def store_device_certificates(event, context):
         certificates_storage.store_certificates(certificates, bucket_name)
         logger.info('## CERTIFICATES STORED SUCCESSFULY')
         logger.info(certificates)
+
+        queue.publish_message(
+            topic_arn=flow_finished_topic,
+            message={
+                "deviceName": certificates['deviceName'],
+                "registered": True
+            }
+        )
 
         return '{} certificates stored sucessfuly'.format(certificates['deviceName'])
     except PutObjectException as e:

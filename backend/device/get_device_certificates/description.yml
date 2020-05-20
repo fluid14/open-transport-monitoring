@@ -2,16 +2,19 @@ getDeviceCertificates:
   handler: get_device_certificates/src/handler.get_device_certificates
   layers:
     - Fn::ImportValue:
-        DeviceLambdaLayer
+        DeviceLambdaLayer-${self:provider.stage}
     - Fn::ImportValue:
-        BucketLambdaLayer
+        BucketLambdaLayer-${self:provider.stage}
   iamRoleStatements:
     - Effect: Allow
-      Action: s3:GetObject
-      Resource: 
-         Fn::GetAtt:
-          - iotCertificatesStorage
-          - Arn
+      Action:
+        - s3:GetObject
+      Resource:
+         Fn::Join:
+          - ""
+          - - "arn:aws:s3:::"
+            - !Ref iotCertificatesStorage
+            - "/*"
     - Effect: Allow
       Action: iot:DescribeThing
       Resource: "*"

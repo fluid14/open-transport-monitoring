@@ -1,10 +1,10 @@
 interface VehicleErrors {
   engine: boolean;
-  oil_level: boolean;
-  coolant_temperature: boolean;
+  oilLevel: boolean;
+  coolantTemperature: boolean;
   battery: boolean;
   abs: boolean;
-  power_steering: boolean;
+  powerSteering: boolean;
 }
 
 export default VehicleErrors;

@@ -4,7 +4,7 @@ org: opentransportmonitoring
 
 provider:
   name: aws
-  stage: dev
+  stage: ${opt:stage, 'dev'}
   region: eu-west-2
 
 plugins:
@@ -29,4 +29,4 @@ resources:
       Value:
         Ref: BucketLambdaLayer
       Export:
-        Name: BucketLambdaLayer
+        Name: BucketLambdaLayer-${self:provider.stage}

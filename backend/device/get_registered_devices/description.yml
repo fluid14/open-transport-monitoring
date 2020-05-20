@@ -2,7 +2,7 @@ getRegisteredDevices:
   handler: get_registered_devices/src/handler.get_registered_devices
   layers:
     - Fn::ImportValue:
-        DeviceLambdaLayer
+        DeviceLambdaLayer-${self:provider.stage}
   iamRoleStatements:
     - Effect: Allow
       Action: iot:ListThings

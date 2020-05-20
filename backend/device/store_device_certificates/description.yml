@@ -2,17 +2,17 @@ storeDeviceCertificates:
   handler: store_device_certificates/src/handler.store_device_certificates
   layers:
     - Fn::ImportValue:
-        QueueLambdaLayer
+        QueueLambdaLayer-${self:provider.stage}
     - Fn::ImportValue:
-        BucketLambdaLayer
+        BucketLambdaLayer-${self:provider.stage}
   events:
-    - sns: 
+    - sns:
         arn: !Ref deviceCertificatesCreatedTopic
         topicName: iot_device_certificates_created
   iamRoleStatements:
     - Effect: Allow
       Action: s3:PutObject
-      Resource: 
+      Resource:
         Fn::Join:
           - "/"
           -
@@ -20,8 +20,12 @@ storeDeviceCertificates:
               - iotCertificatesStorage
               - Arn
             - "*"
+    - Effect: Allow
+      Action: sns:Publish
+      Resource: !Ref deviceRegistrationFinishedTopic
   environment:
     IOT_DEVICES_CERTS_BUCKET: !Ref iotCertificatesStorage
+    IOT_DEVICE_REGISTRATION_FINISHED_TOPIC: !Ref deviceRegistrationFinishedTopic
   package:
     include:
       - store_device_certificates/src/*.py

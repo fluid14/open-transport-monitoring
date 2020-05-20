@@ -8,7 +8,7 @@ package:
 provider:
   name: aws
   runtime: python3.7
-  stage: dev
+  stage: ${opt:stage, 'dev'}
   region: eu-west-2
 
 plugins:
@@ -16,15 +16,15 @@ plugins:
 
 custom:
   pythonRequirements:
-    layer: 
+    layer:
       name: http
       description: HTTP helpers layer
     dockerizePip: false
-    
+
 resources:
   Outputs:
     httpLayerExport:
         Value:
           Ref: PythonRequirementsLambdaLayer
         Export:
-          Name: HttpLambdaLayer
+          Name: HttpLambdaLayer-${self:provider.stage}

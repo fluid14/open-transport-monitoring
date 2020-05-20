@@ -5,7 +5,7 @@ org: opentransportmonitoring
 provider:
   name: aws
   runtime: python3.7
-  stage: dev
+  stage: ${opt:stage, 'dev'}
   region: eu-west-2
 
 plugins:
@@ -31,5 +31,5 @@ resources:
         Value:
           Ref: SqlLambdaLayer
         Export:
-          Name: SqlLambdaLayer
+          Name: SqlLambdaLayer-${self:provider.stage}
 

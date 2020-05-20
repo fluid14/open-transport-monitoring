@@ -10,11 +10,17 @@ provider:
 
 plugins:
   - serverless-iam-roles-per-function
+  - serverless-s3-sync
 
 package:
   individually: true
   exclude:
     - "**/*"
+
+custom:
+  s3Sync:
+    - bucketNameKey: CertificatesStorageBucketName
+      localDir: assets
 
 functions:
   - ${file(create_device_certificates/description.yml)}
@@ -22,7 +28,6 @@ functions:
   - ${file(store_device_certificates/description.yml)}
   - ${file(get_device_certificates/description.yml)}
   - ${file(get_registered_devices/description.yml)}
-  - ${file(handle_device_message/description.yml)}
 
 resources:
   - ${file(resources/iot_device_policy.yml)}

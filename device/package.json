@@ -11,10 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "@types/lodash": "^4.14.150",
+    "aws-appsync": "^3.0.3",
     "aws-iot-device-sdk": "^2.2.1",
+    "graphql-tag": "^2.10.3",
     "lodash": "^4.17.15",
     "node-fetch": "^2.6.0",
-    "ramda": "^0.27.0"
+    "ramda": "^0.27.0",
+    "ws": "^7.3.0"
   },
   "devDependencies": {
     "@types/aws-iot-device-sdk": "^2.2.1",

@@ -4,11 +4,17 @@ org: opentransportmonitoring
 
 provider:
   name: aws
+  runtime: python3.7
   stage: ${opt:stage, 'dev'}
   region: eu-west-2
 
 plugins:
   - serverless-appsync-plugin
+
+package:
+  individually: true
+  exclude:
+    - "**/*"
 
 custom:
   appSync:
@@ -21,12 +27,24 @@ custom:
         config:
           lambdaFunctionArn:
             Fn::ImportValue: device-${self:provider.stage}-getRegisteredDevices
+      - type: NONE
+        name: registerDevice
+        description: 'Register device local'
       - type: AWS_LAMBDA
         name: createDevice
         description: 'Create device'
         config:
           lambdaFunctionArn:
             Fn::ImportValue: device-${self:provider.stage}-registerIotDevice
+      - type: AWS_LAMBDA
+        name: getDeviceCertificates
+        description: 'Get device certificates'
+        config:
+          lambdaFunctionArn:
+            Fn::ImportValue: device-${self:provider.stage}-getDeviceCertificates
+      - type: NONE
+        name: deviceMessage
+        description: 'Device message local'
       - type: AWS_LAMBDA
         name: addVehicle
         description: 'Add vehicle'
@@ -69,10 +87,25 @@ custom:
         field: allDevices
         request: standard.request.vtl
         response: standard.response.vtl
+      - dataSource: getDeviceCertificates
+        type: Query
+        field: deviceCertificates
+        request: standard.request.vtl
+        response: standard.response.vtl
       - dataSource: createDevice
         type: Mutation
         field: createDevice
         request: standard.request.vtl
+        response: standard.response.vtl
+      - dataSource: registerDevice
+        type: Mutation
+        field: registerDevice
+        request: device_registered.request.vtl
+        response: standard.response.vtl
+      - dataSource: deviceMessage
+        type: Mutation
+        field: passDeviceMessage
+        request: device_message.request.vtl
         response: standard.response.vtl
       - dataSource: addVehicle
         type: Mutation
@@ -104,3 +137,8 @@ custom:
         field: deleteVehicle
         request: standard.request.vtl
         response: standard.response.vtl
+
+functions:
+  - ${file(mutations/device_registered/description.yml)}
+  - ${file(mutations/device_message/description.yml)}
+

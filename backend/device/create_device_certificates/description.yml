@@ -2,7 +2,7 @@ createDeviceCertificates:
   handler: create_device_certificates/src/handler.create_device_certificates
   layers:
     - Fn::ImportValue:
-        QueueLambdaLayer
+        QueueLambdaLayer-${self:provider.stage}
   events:
     - sns:
         arn: !Ref deviceRegisteredTopic

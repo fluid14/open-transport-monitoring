@@ -7,11 +7,11 @@ import VehicleErrors from './VehicleErrors';
 
 const ERRORS_INITIAL_VALUE = {
   engine: false,
-  oil_level: false,
-  coolant_temperature: false,
+  oilLevel: false,
+  coolantTemperature: false,
   battery: false,
   abs: false,
-  power_steering: false
+  powerSteering: false
 };
 const INTERVAL = 150;
 

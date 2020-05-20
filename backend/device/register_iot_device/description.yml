@@ -2,9 +2,9 @@ registerIotDevice:
   handler: register_iot_device/src/handler.register_iot_device
   layers:
     - Fn::ImportValue:
-        QueueLambdaLayer
+        QueueLambdaLayer-${self:provider.stage}
     - Fn::ImportValue:
-        DeviceLambdaLayer
+        DeviceLambdaLayer-${self:provider.stage}
   iamRoleStatements:
     - Effect: Allow
       Action: iot:CreateThing

@@ -5,6 +5,7 @@ import logging
 from Device import Device
 from Bucket import Bucket
 from DeviceCertificatesGetter import DeviceCertificatesGetter
+from get_device_certificates_errors import DeviceNotFoundException
 
 # Environment variables
 bucket_name = os.environ['IOT_DEVICES_CERTS_BUCKET']
@@ -32,9 +33,12 @@ def get_device_certificates(event, context):
     logger.info('## DEVICE NAME')
     logger.info(device_name)
 
-    # Get device certificates links
-    device_certificates = certificates_getter.get_device_certificates(device_name, bucket_name)
-    logger.info('## DEVICE CERTIFICATES')
-    logger.info(device_certificates)
+    try:
+        # Get device certificates links
+        device_certificates = certificates_getter.get_device_certificates(device_name, bucket_name)
+        logger.info('## DEVICE CERTIFICATES')
+        logger.info(device_certificates)
 
-    return device_certificates
+        return device_certificates
+    except DeviceNotFoundException:
+        return None

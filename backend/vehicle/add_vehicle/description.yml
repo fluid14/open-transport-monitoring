@@ -2,7 +2,7 @@ addVehicle:
   handler: add_vehicle/src/handler.add_vehicle
   layers:
     - Fn::ImportValue:
-        SqlLambdaLayer
+        SqlLambdaLayer-${self:provider.stage}
   environment: ${file(db_credentials.yml)}
   package:
     include:
