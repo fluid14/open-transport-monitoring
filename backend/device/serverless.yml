@@ -6,7 +6,7 @@ provider:
   name: aws
   runtime: python3.7
   stage: ${opt:stage, 'dev'}
-  region: eu-west-2
+  region: eu-west-1
 
 plugins:
   - serverless-iam-roles-per-function
