@@ -1,0 +1,22 @@
+Resources:
+  deviceMessagesPersistenceRule:
+    Type: AWS::IoT::TopicRule
+    Properties:
+      RuleName: deviceMessagesPersistenceRule
+      TopicRulePayload:
+        Actions:
+          - DynamoDB:
+              HashKeyField: deviceName
+              HashKeyValue:
+                Fn::Join: ['', ['$', '{deviceName}']]
+              PayloadField: data
+              RangeKeyField: timestamp
+              RangeKeyValue:
+                Fn::Join: ['', ['$', '{timestamp()}']]
+              RoleArn:
+                Fn::GetAtt:
+                  - deviceMessagesDatabaseAccessRole
+                  - Arn
+              TableName: !Ref deviceMessages
+        RuleDisabled: false
+        Sql: "SELECT * from 'iot/device'"

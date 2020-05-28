@@ -1,0 +1,18 @@
+Resources:
+  deviceMessages:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: deviceMessages
+      AttributeDefinitions:
+        - AttributeName: deviceName
+          AttributeType: S
+        - AttributeName: timestamp
+          AttributeType: N
+      KeySchema:
+        - AttributeName: deviceName
+          KeyType: HASH
+        - AttributeName: timestamp
+          KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5

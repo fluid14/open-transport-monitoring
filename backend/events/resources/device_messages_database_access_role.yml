@@ -1,0 +1,22 @@
+Resources:
+  deviceMessagesDatabaseAccessRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: iot.amazonaws.com
+            Action: "sts:AssumeRole"
+      Policies:
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:PutItem
+                Resource:
+                  Fn::GetAtt:
+                    - deviceMessages
+                    - Arn
+          PolicyName: dynamodbPutItemPolicy
