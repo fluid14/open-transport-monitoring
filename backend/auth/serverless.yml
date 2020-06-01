@@ -1,0 +1,15 @@
+service: auth
+app: transportation-iot
+org: opentransportmonitoring
+
+provider:
+  name: aws
+  runtime: python3.7
+  stage: ${opt:stage, 'dev'}
+  region: eu-west-1
+
+resources:
+  - ${file(identity_pool.yml)}
+  - ${file(identity_pool_roles.yml)}
+  - ${file(user_pool.yml)}
+  - ${file(user_pool_client.yml)}
