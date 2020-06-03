@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 import mapMock from 'assets/img/map.png';
 import config from 'config.json';
+import vehicleMarker from './vehicleMarker';
 
 const MapWrap = styled.div`
   position: absolute;
@@ -114,7 +115,12 @@ class Map extends Component {
             background: `url(${mapMock}) center center / cover  no-repeat`,
           }}
         >
-          <Layer type="symbol" id="marker" layout={{ 'icon-image': 'car-15' }}>
+          <Layer
+            type="symbol"
+            id="marker"
+            layout={{ 'icon-image': 'truckMarker' }}
+            images={vehicleMarker}
+          >
             {/*<Feature coordinates={[vehiclePosition[1], vehiclePosition[0]]} />*/}
             <Feature coordinates={[16.89706, 52.414331667]} />
           </Layer>
