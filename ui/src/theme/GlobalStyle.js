@@ -40,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
         rgba(255,255,255,0.1) calc(60px - 1px) 60px) ${({ theme }) => theme.colors.purple};
     font-family: 'Nunito', sans-serif;
     min-width: 1200px;
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
   a {

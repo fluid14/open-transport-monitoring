@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import RightBar from 'components/atoms/RightBar';
 import TopBar from 'components/organisms/TopBar/TopBar';
 import translations from 'translations/pl/statsBar.json';
 import ChangeView from 'components/atoms/ChangeView';
 import VehicleErrors from 'components/molecules/VehicleErrors';
-import VehicleSpecification from 'components/molecules/VehicleSpecification';
+import VehicleSpecification from 'components/molecules/VehicleSpecification/VehicleSpecification';
 import VehicleSettings from 'components/molecules/VehicleSettings';
 import VehicleForm from 'components/molecules/VehicleForm';
 import BarTitle from 'components/atoms/BarTitle';
@@ -51,6 +51,7 @@ class StatsBar extends Component {
   state = {
     errorActive: false,
     editVehicleActive: false,
+    errorsInfo: false,
   };
 
   changeView = () => {
@@ -66,11 +67,8 @@ class StatsBar extends Component {
   };
 
   render() {
-    const { errorActive, editVehicleActive } = this.state;
-    const {
-      vehicleId,
-      data: { singleVehicle },
-    } = this.props;
+    const { errorActive, editVehicleActive, errorsInfo } = this.state;
+    const { vehicleId, singleVehicle, errors, stats } = this.props;
     return (
       <StyledRightBar statsBar isVisible={true}>
         {editVehicleActive && <ExitArrow onClick={this.toggleEditVehicle} cross />}
@@ -85,13 +83,13 @@ class StatsBar extends Component {
           {!errorActive && !editVehicleActive && (
             <>
               <Title>{translations.spec}</Title>
-              <VehicleSpecification data={singleVehicle} />
+              <VehicleSpecification data={singleVehicle} stats={stats} vehicleId={vehicleId} />
             </>
           )}
           {errorActive && !editVehicleActive && (
             <>
               <Title>{translations.errors}</Title>
-              <VehicleErrors />
+              <VehicleErrors errors={errors} />
             </>
           )}
           {editVehicleActive && singleVehicle && (
@@ -111,7 +109,9 @@ class StatsBar extends Component {
 
 StatsBar.propTypes = {
   vehicleId: PropTypes.string.isRequired,
-  data: PropTypes.object.isRequired,
+  singleVehicle: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  stats: PropTypes.object.isRequired,
 };
 
 export default StatsBar;

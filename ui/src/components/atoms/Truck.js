@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import truckImg from 'assets/img/truck.svg';
 import Vivus from 'vivus';
 

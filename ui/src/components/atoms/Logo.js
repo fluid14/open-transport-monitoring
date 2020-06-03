@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import logo from 'assets/img/logo.png';
 
 const LogoWrap = styled.img`

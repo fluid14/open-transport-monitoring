@@ -5,7 +5,7 @@ import { Query } from 'react-apollo';
 import ALL_DEVICES from 'graphql/queries/allDevices';
 import translations from 'translations/pl/newVehicleBar.json';
 import Mutation from 'react-apollo/Mutation';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import Button from 'components/atoms/Button';
 import Input from 'components/atoms/Input';
 import Select from 'components/atoms/Select';
@@ -120,7 +120,7 @@ class NewVehicleForm extends Component {
                     value={values.inspectionDate}
                     required
                   />
-                  <Query query={ALL_DEVICES}>
+                  <Query query={ALL_DEVICES} fetchPolicy="network-only">
                     {({ loading, error, data }) => {
                       if (loading) return 'Loading...';
                       if (error) return `Error! ${error.message}`;

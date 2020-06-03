@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { keyframes } from 'styled-components';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -57,7 +57,7 @@ const circularStyles = {
     pathColor: 'rgb(248, 37, 87)',
     trailColor: 'transparent',
     textColor: '#ffffff',
-    textSize: '1.6rem',
+    textSize: '1.3rem',
     backgroundColor: 'rgba(130,33,70, 0.7)',
   },
   blue: {
@@ -65,19 +65,19 @@ const circularStyles = {
     pathColor: 'rgb(41, 68, 214)',
     trailColor: 'transparent',
     textColor: '#ffffff',
-    textSize: '1.6rem',
+    textSize: '1.3rem',
     backgroundColor: 'rgba(34, 46, 142, 0.7)',
   },
 };
 
-const VehicleStatsCircle = ({ className, value, maxValue, valueText, title, style }) => (
+const VehicleStatsCircle = ({ className, value, maxValue, unit, title, style }) => (
   <StatsWrap className={className}>
     <StyledCircularProgressbar
       styles={buildStyles(circularStyles[style])}
       value={value}
       maxValue={maxValue}
       circleRatio={0.8}
-      text={valueText}
+      text={`${value}${unit}`}
       background
       backgroundPadding={0}
       strokeWidth={7}
@@ -90,7 +90,7 @@ VehicleStatsCircle.propTypes = {
   className: PropTypes.string,
   value: PropTypes.string,
   maxValue: PropTypes.string,
-  valueText: PropTypes.string.isRequired,
+  unit: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   style: PropTypes.string.isRequired,
 };
@@ -98,7 +98,7 @@ VehicleStatsCircle.propTypes = {
 VehicleStatsCircle.defaultProps = {
   className: '',
   value: '0',
-  maxValue: '100',
+  maxValue: '0',
 };
 
 export default VehicleStatsCircle;

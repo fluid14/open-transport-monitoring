@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';

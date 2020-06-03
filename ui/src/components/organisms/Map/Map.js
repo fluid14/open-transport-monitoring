@@ -1,14 +1,12 @@
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
-import mapPlug from 'assets/img/map.png';
-import mapInit from 'components/organisms/Map/mapInit';
+import styled from 'styled-components';
 import getUserPosition from 'components/organisms/Map/getUserPosition';
 import { faGripLines } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import mapMock from 'assets/img/map.png';
+import config from 'config.json';
 
 const MapWrap = styled.div`
   position: absolute;
@@ -52,11 +50,9 @@ const ResizeBar = styled.div`
   }
 `;
 
-const MapBox = styled.div`
-  width: 100%;
-  height: 100%;
-  background: url(${mapPlug}) center center / cover no-repeat;
-`;
+const MapGL = ReactMapboxGl({
+  accessToken: config.mapboxApiKey,
+});
 
 class Map extends Component {
   state = {
@@ -77,10 +73,6 @@ class Map extends Component {
           },
         });
       })
-      .then(() => {
-        const { userPosition } = this.state;
-        mapInit(userPosition);
-      })
       .catch(err => console.log(err));
   }
 
@@ -100,7 +92,8 @@ class Map extends Component {
   };
 
   render() {
-    const { className, nonBar } = this.props;
+    const { className, nonBar, vehiclePosition } = this.props;
+    const { userPosition } = this.state;
     return (
       <MapWrap ref={this.mapWrap} className={className}>
         {!nonBar && (
@@ -110,7 +103,23 @@ class Map extends Component {
             </ResizeBars>
           </ResizeBar>
         )}
-        <MapBox id="map" />
+        <MapGL
+          style="mapbox://styles/fluid14/ck6xzkds71nzm1ipnfq5k2puw"
+          center={[16.89706, 52.414331667]}
+          // center={[vehiclePosition[1], vehiclePosition[0]]}
+          zoom={[15]}
+          containerStyle={{
+            height: '100vh',
+            width: '100%',
+            background: `url(${mapMock}) center center / cover  no-repeat`,
+          }}
+        >
+          <Layer type="symbol" id="marker" layout={{ 'icon-image': 'car-15' }}>
+            {/*<Feature coordinates={[vehiclePosition[1], vehiclePosition[0]]} />*/}
+            <Feature coordinates={[16.89706, 52.414331667]} />
+          </Layer>
+        </MapGL>
+        ;
       </MapWrap>
     );
   }

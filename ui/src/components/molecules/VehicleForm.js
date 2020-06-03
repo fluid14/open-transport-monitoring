@@ -8,7 +8,7 @@ import UPDATE_VEHICLE from 'graphql/mutations/updateVehicle';
 import translations from 'translations/pl/newVehicleBar.json';
 import translationsBtn from 'translations/pl/buttons.json';
 import Mutation from 'react-apollo/Mutation';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import Button from 'components/atoms/Button';
 import Input from 'components/atoms/Input';
 import { withRouter } from 'react-router-dom';

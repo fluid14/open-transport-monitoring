@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import StatsTitle from 'components/atoms/Stats/StatsTitle';
 
 const TitleWrap = styled.div`
@@ -30,12 +30,17 @@ const StatsBar = styled.div`
   }
 
   ${({ revers, level }) =>
-    revers &&
-    level <= 20 &&
-    `
+    (revers &&
+      level <= 20 &&
+      `
     &::after{
       background-color: red;
-  `}
+  `) ||
+    (level >= 80 &&
+      `
+    &::after{
+      background-color: blue;
+  `)}
 `;
 
 const VehicleStatsBar = ({ title, level, value, marker, revers }) => (

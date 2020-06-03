@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import GlobalTemplate from 'templates/GlobalTemplate';
 import AllVehiclesView from 'views/AllVehiclesView';
-import VehicleView from 'views/VehicleView';
+import VehicleView from 'views/VehicleView/VehicleView';
 import { routes } from 'routes/routes';
 
 class App extends React.Component {

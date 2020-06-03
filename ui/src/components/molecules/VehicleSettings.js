@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import client from 'awsClient';
@@ -31,6 +31,7 @@ const Settings = styled.div`
 
 const SettingsBtn = styled.button`
   border: none;
+  background-color: ${({ theme }) => theme.colors.white};
 
   &:hover,
   &:focus {
@@ -44,6 +45,7 @@ const SettingsBtn = styled.button`
 const SettingsIcon = styled(FontAwesomeIcon)`
   font-size: 2rem;
   color: ${({ theme }) => theme.colors.black};
+  background-color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
   transition: 0.3s ease;
 `;

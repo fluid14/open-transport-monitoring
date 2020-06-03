@@ -42,7 +42,6 @@ class GlobalTemplate extends Component {
     return (
       <>
         <ThemeProvider theme={theme}>
-          <GlobalStyle />
           <GlobalWrapper>
             <SideBarMenu
               toggleBar={this.toggleNewVehicleBar}
@@ -57,6 +56,7 @@ class GlobalTemplate extends Component {
               <GridViewTypeProvider>{children}</GridViewTypeProvider>
             </ViewWrapper>
           </GlobalWrapper>
+          <GlobalStyle />
         </ThemeProvider>
       </>
     );
