@@ -81,6 +81,12 @@ custom:
         config:
           lambdaFunctionArn:
             Fn::ImportValue: vehicle-${self:provider.stage}-getVehicleParameterLimits
+      - type: AWS_LAMBDA
+        name: getLastMessageOfEachDevice
+        description: 'Get last event of each device'
+        config:
+          lambdaFunctionArn:
+            Fn::ImportValue: events-${self:provider.stage}-getLastEventOfEachDevice
     mappingTemplates:
       - dataSource: allDevices
         type: Query
@@ -135,6 +141,11 @@ custom:
       - dataSource: deleteVehicle
         type: Mutation
         field: deleteVehicle
+        request: standard.request.vtl
+        response: standard.response.vtl
+      - dataSource: getLastMessageOfEachDevice
+        type: Query
+        field: devicesLastMessage
         request: standard.request.vtl
         response: standard.response.vtl
 

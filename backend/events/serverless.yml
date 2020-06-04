@@ -8,7 +8,19 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: eu-west-1
 
+plugins:
+  - serverless-iam-roles-per-function
+
+package:
+  individually: true
+  exclude:
+    - "**/*"
+
+functions:
+  - ${file(get_last_event_of_each_device/description.yml)}
+
 resources:
   - ${file(resources/device_messages_database.yml)}
   - ${file(resources/device_messages_database_access_role.yml)}
   - ${file(resources/device_messages_persistence_iot_rule.yml)}
+  - ${file(stack_outputs.yml)}

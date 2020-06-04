@@ -29,6 +29,7 @@ type Query {
 	allVehicles: [Vehicle]
 	singleVehicle(vehicleId: String!): Vehicle
 	vehicleParameterLimits: [ParameterLimit]
+	devicesLastMessage: [DeviceLastMessageWrapper]
 }
 
 type Subscription {
@@ -94,6 +95,17 @@ type DeviceMessage {
 	rideTime: Float
 	position: [Float]
 	errors: VehicleErrors
+}
+
+type DeviceLastMessage {
+	data: DeviceMessage
+	deviceName: String
+	timestamp: Float
+}
+
+type DeviceLastMessageWrapper {
+	deviceName: String!
+	message: DeviceLastMessage
 }
 
 input DeviceOutput {

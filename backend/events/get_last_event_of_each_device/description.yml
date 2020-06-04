@@ -1,0 +1,20 @@
+getLastEventOfEachDevice:
+  handler: get_last_event_of_each_device/src/handler.handler
+  layers:
+    - Fn::ImportValue:
+        DeviceLambdaLayer-${self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action: iot:ListThings
+      Resource: "*"
+    - Effect: Allow
+      Action: dynamodb:Query
+      Resource:
+          Fn::GetAtt:
+            - deviceMessages
+            - Arn
+  environment:
+    MESSAGES_TABLE: !Ref deviceMessages
+  package:
+    include:
+      - get_last_event_of_each_device/src/*.py
