@@ -10,6 +10,7 @@ import format from 'date-fns/format';
 import ErrorPopUp from 'components/molecules/ErrorPopUp';
 import positionToCity from 'components/molecules/VehicleSpecification/positionToCity';
 import daysToDate from 'components/molecules/VehicleSpecification/daysToDate';
+import getRideTime from 'components/molecules/VehicleSpecification/getRideTime';
 
 const TotalDistance = styled.p`
   font-size: 2.5rem;
@@ -91,10 +92,6 @@ class VehicleSpecification extends Component {
     }
   };
 
-  getRideTime = rideTime => {
-    return format(rideTime, 'h.m');
-  };
-
   render() {
     const {
       data,
@@ -129,8 +126,8 @@ class VehicleSpecification extends Component {
           <SectionTitle>{translations.overall}</SectionTitle>
           <VehicleStatsBar
             title={translations.rideTime}
-            level={(this.getRideTime(rideTime) * 100) / 8}
-            value={this.getRideTime(rideTime)}
+            level={(getRideTime(rideTime) * 100) / 8}
+            value={getRideTime(rideTime)}
             marker="h"
           />
           <VehicleStatsBar title={translations.fuelLevel} level={fuelLevel} marker="%" revers />

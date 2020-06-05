@@ -108,7 +108,7 @@ class VehicleView extends Component {
                                 stats={statsForTruck}
                                 parameterLimits={parameterLimits}
                               />
-                              <StyledMap nonBar showMap={showMap} vehiclePosition={position} />
+                              <StyledMap nonBar showMap={showMap} vehiclePosition={[position]} />
                             </VehicleMapWrap>
                             <StatsBar
                               vehicleId={vehicleId}

@@ -93,7 +93,7 @@ class Map extends Component {
   };
 
   render() {
-    const { className, nonBar, vehiclePosition } = this.props;
+    const { className, nonBar, vehiclePosition, allVehicles } = this.props;
     const { userPosition } = this.state;
     return (
       <MapWrap ref={this.mapWrap} className={className}>
@@ -106,8 +106,11 @@ class Map extends Component {
         )}
         <MapGL
           style="mapbox://styles/fluid14/ck6xzkds71nzm1ipnfq5k2puw"
-          center={[16.89706, 52.414331667]}
-          // center={[vehiclePosition[1], vehiclePosition[0]]}
+          center={
+            vehiclePosition.length === 1
+              ? [vehiclePosition[0][1], vehiclePosition[0][0]]
+              : [userPosition.lng, userPosition.lat]
+          }
           zoom={[15]}
           containerStyle={{
             height: '100vh',
@@ -121,8 +124,8 @@ class Map extends Component {
             layout={{ 'icon-image': 'truckMarker' }}
             images={vehicleMarker}
           >
-            {/*<Feature coordinates={[vehiclePosition[1], vehiclePosition[0]]} />*/}
-            <Feature coordinates={[16.89706, 52.414331667]} />
+            {vehiclePosition &&
+              vehiclePosition.map(position => <Feature coordinates={[position[1], position[0]]} />)}
           </Layer>
         </MapGL>
         ;
@@ -134,11 +137,14 @@ class Map extends Component {
 Map.propTypes = {
   className: PropTypes.string,
   nonBar: PropTypes.bool,
+  vehiclePosition: PropTypes.array.isRequired,
+  allVehicles: PropTypes.bool,
 };
 
 Map.defaultProps = {
   className: '',
   nonBar: false,
+  allVehicles: false,
 };
 
 export default Map;

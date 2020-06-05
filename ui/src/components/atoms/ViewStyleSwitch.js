@@ -13,7 +13,6 @@ const SwitchWrap = styled.a`
 const ViewStyleSwitch = () => (
   <GridViewTypeConsumer>
     {gridView => {
-      console.log(gridView);
       return (
         <SwitchWrap onClick={gridView.changeType}>
           {gridView.type && <FontAwesomeIcon icon={faBars} />}

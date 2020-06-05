@@ -1,0 +1,63 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "amplify-fleetsystem-develop-174908-authRole",
+			"UnauthRoleArn": "arn:aws:iam::692784557204:role/amplify-fleetsystem-develop-174908-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::692784557204:role/amplify-fleetsystem-develop-174908-authRole",
+			"Region": "eu-west-1",
+			"DeploymentBucketName": "amplify-fleetsystem-develop-174908-deployment",
+			"UnauthRoleName": "amplify-fleetsystem-develop-174908-unauthRole",
+			"StackName": "amplify-fleetsystem-develop-174908",
+			"StackId": "arn:aws:cloudformation:eu-west-1:692784557204:stack/amplify-fleetsystem-develop-174908/ef535be0-a67a-11ea-9768-02bfe56b0f60",
+			"AmplifyAppId": "d2fw45efkdy6mh"
+		}
+	},
+	"auth": {
+		"fleetsystem313bcb1e": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false,
+			"lastPushTimeStamp": "2020-06-04T15:59:53.403Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-fleetsystem-develop-174908-deployment/amplify-cfn-templates/auth/fleetsystem313bcb1e-cloudformation-template.yml",
+				"logicalId": "authfleetsystem313bcb1e"
+			},
+			"output": {
+				"AppClientSecret": "1i3d2cdq21uln2r9mjienlp8ta8ij4q8jqb39plcbn3lt2ien24r",
+				"UserPoolId": "eu-west-1_OmHauD0Ou",
+				"AppClientIDWeb": "54rpsvsa4r9sdolulsqonjq06u",
+				"AppClientID": "6oc2cprpe352f5b6pq5clgtep2",
+				"IdentityPoolId": "eu-west-1:b4f26d3f-45a1-4e7f-a481-961fae910f2e",
+				"IdentityPoolName": "fleetsystem313bcb1e_identitypool_313bcb1e__develop",
+				"UserPoolName": "fleetsystem313bcb1e_userpool_313bcb1e"
+			},
+			"lastPushDirHash": "NR3aVlvbG3Sktik079/zGtsjZ1s="
+		},
+		"userPoolGroups": {
+			"service": "Cognito-UserPool-Groups",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "auth",
+					"resourceName": "fleetsystem313bcb1e",
+					"attributes": [
+						"UserPoolId",
+						"AppClientIDWeb",
+						"AppClientID",
+						"IdentityPoolId"
+					]
+				}
+			],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-fleetsystem-develop-174908-deployment/amplify-cfn-templates/auth/template.json",
+				"logicalId": "authuserPoolGroups"
+			},
+			"lastPushTimeStamp": "2020-06-04T15:59:53.403Z",
+			"output": {
+				"group1GroupRole": "arn:aws:iam::692784557204:role/eu-west-1_OmHauD0Ou-group1GroupRole"
+			},
+			"lastPushDirHash": "W75r3CuQ/5hEl4JHtzyop3iU5bY="
+		}
+	}
+}

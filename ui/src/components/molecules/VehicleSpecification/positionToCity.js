@@ -13,7 +13,9 @@ const positionToCity = (position, setState, setCityError) => {
     })
     .catch(error => {
       console.log(error);
-      setCityError(error);
+      if (setCityError) {
+        setCityError(error);
+      }
     });
 };
 

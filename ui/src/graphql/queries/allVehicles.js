@@ -7,6 +7,7 @@ const ALL_VEHICLES = gql`
       brand
       model
       numberPlate
+      deviceId
     }
   }
 `;

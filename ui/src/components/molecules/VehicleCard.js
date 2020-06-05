@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -7,6 +7,8 @@ import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/fontawesome-free-regular';
 import { GridViewTypeConsumer } from 'context/GridViewTypeContext';
 import { keyframes } from 'styled-components';
+import getRideTime from 'components/molecules/VehicleSpecification/getRideTime';
+import positionToCity from 'components/molecules/VehicleSpecification/positionToCity';
 
 const CardAppear = keyframes`
   from{
@@ -129,8 +131,13 @@ const StyledTD = styled.td`
   }
 `;
 
-const VehicleCard = ({ to, brand, model, workTime, locale, status, numberPlate }) => {
+const VehicleCard = ({ to, brand, model, numberPlate, deviceMessage }) => {
+  const [city, setCity] = useState();
   const history = useHistory();
+  const isDeviceMessage = deviceMessage !== null;
+  if (isDeviceMessage) {
+    positionToCity(deviceMessage.data.position, setCity);
+  }
   return (
     <GridViewTypeConsumer>
       {gridView => (
@@ -140,16 +147,20 @@ const VehicleCard = ({ to, brand, model, workTime, locale, status, numberPlate }
               <VehicleCardWrap>
                 <Mark>{brand}</Mark>
                 <Paragraph>{model}</Paragraph>
-                <Status status={status} />
+                <Status status={isDeviceMessage} />
                 <InfoWrap>
-                  <Info>
-                    <FontAwesomeIcon icon={faClock} />
-                    <InfoText>{workTime}h</InfoText>
-                  </Info>
-                  <Info>
-                    <FontAwesomeIcon icon={faLocationArrow} />
-                    <InfoText>{locale}</InfoText>
-                  </Info>
+                  {isDeviceMessage && (
+                    <>
+                      <Info>
+                        <FontAwesomeIcon icon={faClock} />
+                        <InfoText>{getRideTime(deviceMessage.data.rideTime)}h</InfoText>
+                      </Info>
+                      <Info>
+                        <FontAwesomeIcon icon={faLocationArrow} />
+                        <InfoText>{city}</InfoText>
+                      </Info>
+                    </>
+                  )}
                 </InfoWrap>
                 <Registration>{numberPlate}</Registration>
               </VehicleCardWrap>
@@ -166,14 +177,14 @@ const VehicleCard = ({ to, brand, model, workTime, locale, status, numberPlate }
               <StyledTD>
                 <Paragraph>{numberPlate}</Paragraph>
               </StyledTD>
+              <StyledTD>{isDeviceMessage && <Paragraph>{city}</Paragraph>}</StyledTD>
               <StyledTD>
-                <Paragraph>{locale}</Paragraph>
+                {isDeviceMessage && (
+                  <Paragraph>{getRideTime(deviceMessage.data.rideTime)}h</Paragraph>
+                )}
               </StyledTD>
               <StyledTD>
-                <Paragraph>{workTime}h</Paragraph>
-              </StyledTD>
-              <StyledTD>
-                <Status gridType={!gridView.type} status={status} />
+                <Status gridType={!gridView.type} status={isDeviceMessage} />
               </StyledTD>
             </StyledTR>
           )}
@@ -186,14 +197,9 @@ const VehicleCard = ({ to, brand, model, workTime, locale, status, numberPlate }
 VehicleCard.propTypes = {
   brand: PropTypes.string.isRequired,
   model: PropTypes.string.isRequired,
-  locale: PropTypes.string.isRequired,
-  status: PropTypes.bool,
   numberPlate: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
-};
-
-VehicleCard.defaultProps = {
-  status: false,
+  deviceMessage: PropTypes.object.isRequired,
 };
 
 export default VehicleCard;

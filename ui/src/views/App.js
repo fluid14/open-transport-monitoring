@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import GlobalTemplate from 'templates/GlobalTemplate';
-import AllVehiclesView from 'views/AllVehiclesView';
+import AllVehiclesView from 'views/AllVehiclesView/AllVehiclesView';
 import VehicleView from 'views/VehicleView/VehicleView';
 import { routes } from 'routes/routes';
 
