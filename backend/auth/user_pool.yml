@@ -3,6 +3,8 @@ Resources:
     Type: AWS::Cognito::UserPool
     Properties:
       UserPoolName: ${self:provider.stage}-user-pool
+      AutoVerifiedAttributes:
+        - email
 
 Outputs:
   UserPoolId:
