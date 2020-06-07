@@ -1,9 +1,19 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import GlobalTemplate from 'templates/GlobalTemplate';
 import AllVehiclesView from 'views/AllVehiclesView/AllVehiclesView';
 import VehicleView from 'views/VehicleView/VehicleView';
 import { routes } from 'routes/routes';
+import awsmobile from 'aws-exports';
+import Amplify, { I18n } from 'aws-amplify';
+import { withAuthenticator } from 'aws-amplify-react';
+import './authenticator.css';
+import dict from 'translations/pl/authentication';
+
+Amplify.configure(awsmobile);
+
+I18n.putVocabularies(dict);
+I18n.setLanguage('pl');
 
 class App extends React.Component {
   state = {
@@ -26,4 +36,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withAuthenticator(App);

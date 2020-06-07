@@ -1,0 +1,8 @@
+:root{
+    --font-family: 'Nunito', sans-serif;
+    --button-background-color: rgba(32, 28, 66, 1);
+    --button-click: rgba(32, 28, 66, 1);
+    --link-color: rgba(32, 28, 66, 1);
+    --ion-color-primary-tint: rgba(32, 28, 66, 1);
+    font-family: var(--font-family);
+}

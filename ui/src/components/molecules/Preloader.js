@@ -18,9 +18,9 @@ const PreloaderWrap = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 99;
+  z-index: 9999;
   transition: 0.3s ease;
-  opacity: 0.9;
+  opacity: 1;
   background-color: ${({ theme }) => theme.colors.purple};
 
   ${({ loading }) =>

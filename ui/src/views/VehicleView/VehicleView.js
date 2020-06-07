@@ -101,13 +101,15 @@ class VehicleView extends Component {
                                 {!showMap && <p>{translations.map}</p>}
                                 {showMap && <p>{translations.vehicle}</p>}
                               </ChangeView>
-                              <TruckView
-                                brand={brand}
-                                model={model}
-                                plateNumber={numberPlate}
-                                stats={statsForTruck}
-                                parameterLimits={parameterLimits}
-                              />
+                              {!showMap && (
+                                <TruckView
+                                  brand={brand}
+                                  model={model}
+                                  plateNumber={numberPlate}
+                                  stats={statsForTruck}
+                                  parameterLimits={parameterLimits}
+                                />
+                              )}
                               <StyledMap nonBar showMap={showMap} vehiclePosition={[position]} />
                             </VehicleMapWrap>
                             <StatsBar

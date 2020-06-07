@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Logo from 'components/atoms/Logo';
@@ -6,6 +6,7 @@ import logoutIco from 'assets/img/icons/logout.png';
 import translations from 'translations/pl/sideBarMenu.json';
 import { NavLink } from 'react-router-dom';
 import { routes } from 'routes/routes';
+import { Auth } from 'aws-amplify';
 
 const SideBarMenuWrap = styled.div`
   height: 100vh;
@@ -81,24 +82,33 @@ const LogOutBtn = styled.a`
   cursor: pointer;
 `;
 
-const SideBarMenu = ({ toggleBar, isNewVehicleBarActive }) => (
-  <SideBarMenuWrap>
-    <Logo />
-    <List>
-      <ListItem>
-        <MenuLink as={NavLink} to={routes.allVehicles} activeClassName="active">
-          {translations.all_vehicles}
-        </MenuLink>
-      </ListItem>
-      <ListItem>
-        <MenuLink onClick={() => toggleBar()} isNewVehicleBarActive={isNewVehicleBarActive}>
-          {translations.add_vehicle}
-        </MenuLink>
-      </ListItem>
-    </List>
-    <LogOutBtn />
-  </SideBarMenuWrap>
-);
+class SideBarMenu extends Component {
+  onSignOutClick() {
+    Auth.signOut();
+  }
+
+  render() {
+    const { toggleBar, isNewVehicleBarActive } = this.props;
+    return (
+      <SideBarMenuWrap>
+        <Logo />
+        <List>
+          <ListItem>
+            <MenuLink as={NavLink} to={routes.allVehicles} activeClassName="active">
+              {translations.all_vehicles}
+            </MenuLink>
+          </ListItem>
+          <ListItem>
+            <MenuLink onClick={() => toggleBar()} isNewVehicleBarActive={isNewVehicleBarActive}>
+              {translations.add_vehicle}
+            </MenuLink>
+          </ListItem>
+        </List>
+        <LogOutBtn onClick={this.onSignOutClick} />
+      </SideBarMenuWrap>
+    );
+  }
+}
 
 SideBarMenu.propTypes = {
   toggleBar: PropTypes.func.isRequired,

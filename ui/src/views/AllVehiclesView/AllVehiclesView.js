@@ -30,7 +30,7 @@ class AllVehiclesView extends Component {
     const { vehiclesPosition } = this.state;
     return (
       <>
-        <TopBar userName="Jan Nowak" />
+        <TopBar />
         <ContentWrap>
           <GridListTemplate>
             <Query query={ALL_VEHICLES} fetchPolicy={'network-only'}>

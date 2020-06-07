@@ -1,7 +1,0 @@
-{
-    "develop": {
-        "configLevel": "project",
-        "useProfile": true,
-        "profileName": "fleetSystem"
-    }
-}

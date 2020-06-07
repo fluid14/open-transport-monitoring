@@ -72,7 +72,7 @@ class StatsBar extends Component {
     return (
       <StyledRightBar statsBar isVisible={true}>
         {editVehicleActive && <ExitArrow onClick={this.toggleEditVehicle} cross />}
-        <TopBar userName="Jan Nowak" noSwitch vehicle />
+        <TopBar noSwitch vehicle />
         <Wrap>
           {!editVehicleActive && (
             <StyledChangeView onClick={this.changeView}>

@@ -1,12 +1,23 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import truckImg from 'assets/img/truck.svg';
 import Vivus from 'vivus';
+
+const truckAnim = keyframes`
+  0%{
+    transform: translateY(100%);
+  }
+  
+  100%{
+    transform: translateY(0);
+  }
+`;
 
 const TruckImg = styled.div`
   margin-top: 2rem;
   width: 20rem;
+  animation: 1s cubic-bezier(0.81, 1.09, 0.77, 0.96) 0.5s both ${truckAnim};
 `;
 
 class Truck extends Component {
