@@ -17,6 +17,11 @@ const dict = {
     'Create Account': 'Zarejestruj się',
     'Sign in': 'Zaloguj się',
     'Have an account? ': 'Masz już konto? ',
+    'Create a new account': 'Stwórz nowe konto',
+    Code: 'Kod',
+    'New Password': 'Nowe hasło',
+    'Resend Code': 'Wyślij ponownie kod',
+    Submit: 'Zatwierdź',
   },
 };
 
