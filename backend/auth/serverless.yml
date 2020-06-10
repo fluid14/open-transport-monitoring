@@ -6,10 +6,15 @@ provider:
   name: aws
   runtime: python3.7
   stage: ${opt:stage, 'dev'}
-  region: eu-west-1
+  region: ${opt:region, 'eu-west-1'}
 
 resources:
   - ${file(identity_pool.yml)}
   - ${file(identity_pool_roles.yml)}
   - ${file(user_pool.yml)}
   - ${file(user_pool_client.yml)}
+
+outputs:
+    userPoolClientId: !Ref CognitoUserPoolClient
+    userPoolId: !Ref CognitoUserPool
+    identityPoolId: !Ref CognitoIdentityPool

@@ -73,7 +73,8 @@
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^1.7.0",
     "prettier": "^1.19.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "serverless-s3-sync": "^1.14.3"
   },
   "resolutions": {
     "apollo-client": "2.6.3"

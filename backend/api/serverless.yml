@@ -6,7 +6,7 @@ provider:
   name: aws
   runtime: python3.7
   stage: ${opt:stage, 'dev'}
-  region: eu-west-1
+  region: ${opt:region, 'eu-west-1'}
 
 plugins:
   - serverless-appsync-plugin
@@ -153,3 +153,6 @@ functions:
   - ${file(mutations/device_registered/description.yml)}
   - ${file(mutations/device_message/description.yml)}
 
+outputs:
+    apiUrl: !GetAtt GraphQlApi.GraphQLUrl
+    apiKey: !GetAtt GraphQlApiKeyDefault.ApiKey

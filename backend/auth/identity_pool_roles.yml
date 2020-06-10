@@ -10,7 +10,7 @@ Resources:
   CognitoAuthRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: appAuthRole
+      RoleName: appAuthRole-${self:provider.stage}
       Path: /
       AssumeRolePolicyDocument:
         Version: "2012-10-17"

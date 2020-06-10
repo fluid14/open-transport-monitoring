@@ -1,0 +1,51 @@
+service: ui
+app: transportation-iot
+org: opentransportmonitoring
+
+provider:
+  name: aws
+  runtime: nodejs
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'eu-west-1'}
+
+plugins:
+  - serverless-s3-sync
+
+custom:
+  siteName: serverless-zombo.com
+  s3Sync:
+    - bucketNameKey: FleetSystemUIBucketName
+      localDir: build
+
+resources:
+  Resources:
+    fleetSystemUIBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        AccessControl: PublicRead
+        BucketName: fleet-system-${self:provider.stage}
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: index.html
+    fleetSystemUIBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket: !Ref fleetSystemUIBucket
+        PolicyDocument:
+          Statement:
+            - Sid: PublicReadGetObject
+              Effect: Allow
+              Principal: "*"
+              Action: s3:GetObject
+              Resource:
+                Fn::Join:
+                  - ""
+                  - - "arn:aws:s3:::"
+                    - !Ref fleetSystemUIBucket
+                    - "/*"
+
+outputs:
+  websiteUrl:
+    Fn:GetAttr:
+      - !Ref fleetSystemUIBucket
+      - WebsiteURL

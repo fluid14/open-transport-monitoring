@@ -5,7 +5,7 @@ org: opentransportmonitoring
 provider:
   name: aws
   stage: ${opt:stage, 'dev'}
-  region: eu-west-1
+  region: ${opt:region, 'eu-west-1'}
 
 plugins:
   - serverless-scriptable-plugin
